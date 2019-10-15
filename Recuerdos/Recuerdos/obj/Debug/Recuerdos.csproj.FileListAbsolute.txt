@@ -1,0 +1,11 @@
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\bin\Debug\Recuerdos.exe.config
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\bin\Debug\Recuerdos.exe
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\bin\Debug\Recuerdos.pdb
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.crearSueñosRecuerdos.resources
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.pnPrincipal.resources
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.Properties.Resources.resources
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.csproj.GenerateResource.cache
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.csproj.CoreCompileInputs.cache
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.exe
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.pdb
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.csprojAssemblyReference.cache

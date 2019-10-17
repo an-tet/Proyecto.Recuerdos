@@ -41,6 +41,13 @@
             this.mainSlipContainer = new System.Windows.Forms.SplitContainer();
             this.pbWrapper = new System.Windows.Forms.PictureBox();
             this.txtNota = new System.Windows.Forms.TextBox();
+            this.csmTextBox = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copiarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cortarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pegarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.guardarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.limpiarSueñoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSueñoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdNota = new System.Windows.Forms.OpenFileDialog();
             this.sfdNota = new System.Windows.Forms.SaveFileDialog();
             this.pnMenu = new System.Windows.Forms.Panel();
@@ -75,12 +82,14 @@
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deshacerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsTreeView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).BeginInit();
             this.mainSlipContainer.Panel1.SuspendLayout();
             this.mainSlipContainer.Panel2.SuspendLayout();
             this.mainSlipContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbWrapper)).BeginInit();
+            this.csmTextBox.SuspendLayout();
             this.pnMenu.SuspendLayout();
             this.mnPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +110,7 @@
             this.tvSuenos.SelectedImageIndex = 0;
             this.tvSuenos.Size = new System.Drawing.Size(261, 578);
             this.tvSuenos.TabIndex = 0;
+            this.tvSuenos.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.tvSuenos_NodeMouseHover);
             this.tvSuenos.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tvSuenos_MouseDoubleClick);
             // 
             // cmsTreeView
@@ -186,7 +196,7 @@
             // 
             this.pbWrapper.BackColor = System.Drawing.SystemColors.Window;
             this.pbWrapper.Image = ((System.Drawing.Image)(resources.GetObject("pbWrapper.Image")));
-            this.pbWrapper.Location = new System.Drawing.Point(0, 268);
+            this.pbWrapper.Location = new System.Drawing.Point(3, 268);
             this.pbWrapper.Name = "pbWrapper";
             this.pbWrapper.Size = new System.Drawing.Size(34, 31);
             this.pbWrapper.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -197,6 +207,7 @@
             // txtNota
             // 
             this.txtNota.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.txtNota.ContextMenuStrip = this.csmTextBox;
             this.txtNota.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNota.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNota.Location = new System.Drawing.Point(0, 0);
@@ -205,6 +216,66 @@
             this.txtNota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtNota.Size = new System.Drawing.Size(897, 578);
             this.txtNota.TabIndex = 4;
+            // 
+            // csmTextBox
+            // 
+            this.csmTextBox.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.csmTextBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copiarToolStripMenuItem1,
+            this.cortarToolStripMenuItem1,
+            this.pegarToolStripMenuItem1,
+            this.guardarToolStripMenuItem1,
+            this.limpiarSueñoToolStripMenuItem,
+            this.cerrarSueñoToolStripMenuItem,
+            this.deshacerToolStripMenuItem1});
+            this.csmTextBox.Name = "csmTextBox";
+            this.csmTextBox.Size = new System.Drawing.Size(191, 172);
+            // 
+            // copiarToolStripMenuItem1
+            // 
+            this.copiarToolStripMenuItem1.Name = "copiarToolStripMenuItem1";
+            this.copiarToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copiarToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
+            this.copiarToolStripMenuItem1.Text = "Copiar";
+            this.copiarToolStripMenuItem1.Click += new System.EventHandler(this.copiarToolStripMenuItem1_Click);
+            // 
+            // cortarToolStripMenuItem1
+            // 
+            this.cortarToolStripMenuItem1.Name = "cortarToolStripMenuItem1";
+            this.cortarToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.cortarToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
+            this.cortarToolStripMenuItem1.Text = "Cortar";
+            this.cortarToolStripMenuItem1.Click += new System.EventHandler(this.cortarToolStripMenuItem1_Click);
+            // 
+            // pegarToolStripMenuItem1
+            // 
+            this.pegarToolStripMenuItem1.Name = "pegarToolStripMenuItem1";
+            this.pegarToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pegarToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
+            this.pegarToolStripMenuItem1.Text = "Pegar";
+            this.pegarToolStripMenuItem1.Click += new System.EventHandler(this.pegarToolStripMenuItem1_Click);
+            // 
+            // guardarToolStripMenuItem1
+            // 
+            this.guardarToolStripMenuItem1.Name = "guardarToolStripMenuItem1";
+            this.guardarToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.guardarToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
+            this.guardarToolStripMenuItem1.Text = "Guardar";
+            this.guardarToolStripMenuItem1.Click += new System.EventHandler(this.guardarToolStripMenuItem1_Click);
+            // 
+            // limpiarSueñoToolStripMenuItem
+            // 
+            this.limpiarSueñoToolStripMenuItem.Name = "limpiarSueñoToolStripMenuItem";
+            this.limpiarSueñoToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.limpiarSueñoToolStripMenuItem.Text = "Limpiar sueño";
+            this.limpiarSueñoToolStripMenuItem.Click += new System.EventHandler(this.limpiarSueñoToolStripMenuItem_Click);
+            // 
+            // cerrarSueñoToolStripMenuItem
+            // 
+            this.cerrarSueñoToolStripMenuItem.Name = "cerrarSueñoToolStripMenuItem";
+            this.cerrarSueñoToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.cerrarSueñoToolStripMenuItem.Text = "Cerrar sueño";
+            this.cerrarSueñoToolStripMenuItem.Click += new System.EventHandler(this.cerrarSueñoToolStripMenuItem_Click);
             // 
             // ofdNota
             // 
@@ -305,6 +376,7 @@
             this.guardarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.guardarToolStripMenuItem.Size = new System.Drawing.Size(282, 26);
             this.guardarToolStripMenuItem.Text = "&Guardar";
+            this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
             // guardarcomoToolStripMenuItem
             // 
@@ -482,6 +554,15 @@
             this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.acercadeToolStripMenuItem.Text = "&Acerca de...";
             // 
+            // deshacerToolStripMenuItem1
+            // 
+            this.deshacerToolStripMenuItem1.Name = "deshacerToolStripMenuItem1";
+            this.deshacerToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.deshacerToolStripMenuItem1.Size = new System.Drawing.Size(190, 24);
+            this.deshacerToolStripMenuItem1.Text = "Deshacer";
+            this.deshacerToolStripMenuItem1.Visible = false;
+            this.deshacerToolStripMenuItem1.Click += new System.EventHandler(this.deshacerToolStripMenuItem1_Click);
+            // 
             // pnPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -504,6 +585,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).EndInit();
             this.mainSlipContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbWrapper)).EndInit();
+            this.csmTextBox.ResumeLayout(false);
             this.pnMenu.ResumeLayout(false);
             this.pnMenu.PerformLayout();
             this.mnPrincipal.ResumeLayout(false);
@@ -558,6 +640,14 @@
         private System.Windows.Forms.ToolStripMenuItem cambiarNombreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarcToolStripMenuItem;
         public System.Windows.Forms.TreeView tvSuenos;
+        private System.Windows.Forms.ContextMenuStrip csmTextBox;
+        private System.Windows.Forms.ToolStripMenuItem copiarToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem cortarToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem pegarToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem limpiarSueñoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarSueñoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deshacerToolStripMenuItem1;
     }
 }
 

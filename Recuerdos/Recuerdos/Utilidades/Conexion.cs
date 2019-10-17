@@ -28,7 +28,7 @@ namespace Recuerdos.Utilidades
             try
             {
                 conectar.Open();
-                MessageBox.Show("Se realizo la conexion...");
+                //MessageBox.Show("Se realizo la conexion...");
                 return conectar;
             }
             catch (Exception ex)
@@ -130,7 +130,6 @@ namespace Recuerdos.Utilidades
             }
         }
 
-        //Cierra conexion con la BD
         //Cierra conexion con la BD
         public void cerrar(SqlConnection conector)
         {

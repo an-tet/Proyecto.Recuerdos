@@ -19,14 +19,29 @@ namespace Recuerdos
     public partial class pnPrincipal : Form
     {
         //Instancias
+
+        String textoCuandoAbre = "";
+        //Arraylist para manejar los directorios existentes en la BD
         public static ArrayList lista_directorios = new ArrayList();
+
+        //Arraylist para manejar los archivos existentes en la BD
         public static ArrayList lista_archivos = new ArrayList();
+
+        //objeto de la conexion, consulta y operaciones a la BD
         public static Conexion objCon = new Conexion();
+
+        //Variable para guardar la conexion a la BD
         private static SqlConnection con = null;
-        
+
+        //Almacena el nombre del nodo que este actualmente abierto (por uncionalidad puede ser un nodo en un futuro)
+        static String nodoAbierto = "";
+
+        //booleano para manejar el movimiento del sliptterPanel
+        Boolean esconder = true;
+
         //CONSTRUCTOR
         public pnPrincipal()
-        {            
+        {
             InitializeComponent();
             txtNota.Hide();
             this.Focus();
@@ -37,7 +52,7 @@ namespace Recuerdos
         Boolean InicializarTree()
         {
             //Instancias del metodo
-            TreeNode nodo=null;
+            TreeNode nodo = null;
             try
             {
                 con = objCon.conectar();
@@ -45,20 +60,20 @@ namespace Recuerdos
                 objCon.cerrar(con);
                 con = objCon.conectar();
                 lista_archivos = objCon.consultaArch("select * from  archivo", con);
-                if (lista_directorios!=null)
+                if (lista_directorios != null)
                 {
                     if (lista_directorios.Count > 0)
                     {
                         foreach (Directorio d in lista_directorios)
-                        {                                            
-                            if (d.Padre==0)
+                        {
+                            if (d.Padre == 0)
                             {
                                 nodo = new TreeNode
                                 {
                                     Text = d.Nombre,
                                     Tag = "dir",
                                     ImageIndex = 0,
-                                    SelectedImageIndex = 0,                                    
+                                    SelectedImageIndex = 0,
                                 };
                                 tvSuenos.Nodes.Add(nodo);
                                 if (lista_archivos.Count > 0)
@@ -78,7 +93,7 @@ namespace Recuerdos
                                     }
                                 }
                                 cargarHijos(nodo, d.Id, lista_directorios, lista_archivos);
-                            }                            
+                            }
                             tvSuenos.ExpandAll();
                             objCon.cerrar(con);
                         }
@@ -91,7 +106,7 @@ namespace Recuerdos
             }
             catch (Exception e)
             {
-                MessageBox.Show("Entro al catch \n "+e.ToString());               
+                MessageBox.Show("Entro al catch \n " + e.ToString());
             }
             return true;
         }
@@ -100,10 +115,10 @@ namespace Recuerdos
         TreeNode node2 = null;
 
         //carga hijos del treeview
-        public void cargarHijos(TreeNode node,double id, ArrayList alDir,ArrayList alArch)
+        public void cargarHijos(TreeNode node, double id, ArrayList alDir, ArrayList alArch)
         {
             foreach (Directorio d in alDir)
-            {               
+            {
                 if (id == d.Padre)
                 {
                     node2 = new TreeNode
@@ -130,11 +145,11 @@ namespace Recuerdos
                             }
                         }
                     }
-                    cargarHijos(node2, d.Id,alDir,alArch);                    
-                }               
+                    cargarHijos(node2, d.Id, alDir, alArch);
+                }
             }
         }
-     
+
         //Habilita todos los componentes cuando una hoja de texto es abierta y asi porder usarlos
         void habilitarComponentes()
         {
@@ -147,8 +162,17 @@ namespace Recuerdos
             txtNota.Visible = true;
         }
 
-        //booleano para manejar el movimiento del sliptterPanel
-        Boolean esconder = true;
+        //metodo que desabilita componentes en caso de que no halla un sueño abierto
+        void desHabilitarComponenes()
+        {
+            guardarcomoToolStripMenuItem.Enabled = false;
+            guardarToolStripMenuItem.Enabled = false;
+            imprimirToolStripMenuItem.Enabled = false;
+            vistapreviadeimpresiónToolStripMenuItem.Enabled = false;
+            editarToolStripMenuItem.Enabled = false;
+            herramientasToolStripMenuItem.Enabled = false;
+            txtNota.Visible = false;
+        }
 
         //evento click de icono para esconder y abrir el sliptterPanel
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -166,14 +190,18 @@ namespace Recuerdos
                 mainSlipContainer.SplitterDistance = 200;
                 pbWrapper.Hide();
                 esconder = true;
-            }            
+            }
         }
 
         //Evento hover que muestra la imagen que esconde y muestra el sliptterPanel
         private void mainSlipContainer_MouseHover(object sender, EventArgs e)
         {
+            if (txtNota.Visible == true)
+            {
+                pbWrapper.BackColor = Color.LightSteelBlue;
+            }
             pbWrapper.Show();
-        }  
+        }
 
         //Opcion alternativa para esconder el sliptterPanel por medio de click derecho en treeview
         private void ocultarSueñosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,8 +216,8 @@ namespace Recuerdos
         TreeNode seleccion = null;
         private void nuevaCarpetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            seleccion=tvSuenos.SelectedNode;
-            crearSueñosRecuerdos csr = new crearSueñosRecuerdos("sueño",seleccion);
+            seleccion = tvSuenos.SelectedNode;
+            crearSueñosRecuerdos csr = new crearSueñosRecuerdos("sueño", seleccion);
             csr.Show();
         }
 
@@ -211,23 +239,195 @@ namespace Recuerdos
         {
             try
             {
-                SqlDataReader consulta;
-                if (tvSuenos.SelectedNode != null && tvSuenos.SelectedNode.Tag.ToString() == "arch")
+                if (txtNota.Visible==true)
                 {
-                    con = objCon.conectar();
-                    consulta = objCon.consulta("select contenido from archivo where nombre ='" + tvSuenos.SelectedNode.Text + "'", con);
-                    while (consulta.Read())
+                    if (salirDeSueno()!="cancel")
                     {
-                        txtNota.Text = consulta["contenido"].ToString();
-                        habilitarComponentes();
-                        objCon.cerrar(con);
+                        if (tvSuenos.SelectedNode != null && tvSuenos.SelectedNode.Tag.ToString() == "arch")
+                        {
+                            abrirNota();
+                        }
                     }
+                }
+                else
+                {
+                    abrirNota();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lo sentimos, algo salio mal al abrir este archivo...\n"+ex.ToString());
+                MessageBox.Show("Lo sentimos, algo salio mal al abrir este archivo...\n" + ex.ToString());
             }
+        }
+
+        //metodo generico para abrir un sueño
+        void abrirNota()
+        {
+            SqlDataReader consulta;
+            con = objCon.conectar();
+            nodoAbierto = tvSuenos.SelectedNode.Text;
+            consulta = objCon.consulta("select contenido from archivo where nombre ='" + nodoAbierto + "'", con);
+            while (consulta.Read())
+            {
+                txtNota.Text = consulta["contenido"].ToString();
+                textoCuandoAbre = txtNota.Text;
+            }
+            habilitarComponentes();
+            nodoAbierto = tvSuenos.SelectedNode.Text;
+            objCon.cerrar(con);
+        }
+
+        //Guarda lo que hay en el archivo actualmente abierto y lo actualiza en la BD
+        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ActualizarSueño())
+            {
+                ActualizarSueño();
+                MessageBox.Show("Se guardo exitosamente");
+            }
+            else
+            {
+                MessageBox.Show("Ah ocurrido un error, lo atenderemos lo mas pronto posible.");
+            }
+        }
+
+        //metodo generico para actualizar el valor del sueño
+        public Boolean ActualizarSueño()
+        {
+            if (nodoAbierto != "")
+            {
+                String nota = txtNota.Text;
+                con = objCon.conectar();
+                objCon.operar("update archivo set contenido='" + nota + "' where nombre='" + nodoAbierto + "'", con);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Selecciona el nodo sobre el que esta el mouse
+        private void tvSuenos_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            tvSuenos.SelectedNode = e.Node;
+        }
+
+        //Funcionalidad del click delerecho sobre el textBox de copiar el texto seleccionado
+        private void copiarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (txtNota.SelectedText != "")
+            {
+                //Clipboard.SetText(txtNota.SelectedText);
+                txtNota.Copy();
+            }
+        }
+
+        //Funcionalidad del click delerecho sobre el textBox de cortar el texto seleccionado
+        private void cortarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (txtNota.SelectedText != "")
+            {
+                //Clipboard.SetText(txtNota.SelectedText);
+                txtNota.Cut();
+            }
+        }
+
+        //Obtiene lo que hay en el porta papeles y lo pega donde esta el cursor
+        private void pegarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            IDataObject iData = Clipboard.GetDataObject();
+            if (iData.GetDataPresent(DataFormats.Text))
+            {
+                //txtNota.Text=txtNota.Text.Insert(txtNota.SelectionStart, (String)iData.GetData(DataFormats.Text));
+                txtNota.Paste();
+            }
+        }
+
+        //Opcion de cerrar sueño en el menu de contexto del textBox
+        private void cerrarSueñoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String salir = salirDeSueno();
+            switch (salir)
+            {
+                case "si":
+                    MessageBox.Show("Guardado..");
+                    break;
+                case "no":
+                    break;
+                case "error":
+                    MessageBox.Show("ah ocurrido un problema, lo solucionaremos lo mas rapido posible.");
+                    break;
+                case "cancel":
+                    break;
+                default:
+                    desHabilitarComponenes();
+                    break;
+            }
+        }
+
+        //Metodo generico para salir de un sueño
+        public String salirDeSueno()
+        {
+            if (textoCuandoAbre != txtNota.Text)
+            {
+                var respuesta = MessageBox.Show("¿Desea guardar los cambios hechos antes de cerrar el sueño?", "", MessageBoxButtons.YesNoCancel);
+                if (respuesta == DialogResult.Yes)
+                {                    
+                    if (ActualizarSueño())
+                    {
+                        txtNota.Visible = false;
+                        tvSuenos.Focus();
+                        nodoAbierto = "";
+                        desHabilitarComponenes();
+                        return "si";
+                    }
+                    else
+                    {
+                        return "error";
+                    }
+                }
+                else if (respuesta==DialogResult.No)
+                {
+                    nodoAbierto = "";
+                    tvSuenos.Focus();
+                    desHabilitarComponenes();
+                    return "no";
+                }
+                else if (respuesta==DialogResult.Cancel)
+                {
+                    return "cancel";
+                }               
+            }            
+            return "";
+        }
+
+        //Opcion de menu de contexto del textBox para guardar sueño
+        private void guardarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (ActualizarSueño())
+            {
+                MessageBox.Show("Se guardo exitosamente");
+            }
+            else
+            {
+                MessageBox.Show("Ah ocurrido un error, lo atenderemos lo mas pronto posible.");
+            }
+        }
+
+        private void limpiarSueñoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var respuesta=MessageBox.Show("¿Esta seguro que desea limpar el sueño?","",MessageBoxButtons.OKCancel);
+            if (DialogResult.OK==respuesta)
+            {
+                Clipboard.SetText(txtNota.Text);
+                txtNota.Text = "";                
+            }
+        }
+
+        private void deshacerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+           txtNota.Text=(String)Clipboard.GetData(DataFormats.Text);
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Recuerdos.Utilidades
             }
             catch (Exception ex)
             {
+                conectar.Close();
                 MessageBox.Show("Fallo la conexión " + ex.ToString());
                 return null;
             }
@@ -49,6 +50,7 @@ namespace Recuerdos.Utilidades
             }
             catch (Exception ex)
             {
+                conector.Close();
                 MessageBox.Show("Fallo la consulta " + ex.ToString());
                 return null;
             }
@@ -76,11 +78,11 @@ namespace Recuerdos.Utilidades
                     objDir.Nombre = tabla["nombre"].ToString();
                     arrayDir.Add(objDir);                    
                 }
-                conector.Close();
                 return arrayDir;
             }
             catch (Exception ex)
             {
+                conector.Close();
                 MessageBox.Show("Fallo la consulta " + ex.ToString());
                 return null;
             }
@@ -100,14 +102,14 @@ namespace Recuerdos.Utilidades
                     objArch.Nombre = tabla["nombre"].ToString();
                     objArch.Id_directorio = Convert.ToInt32(tabla["id_directorio"].ToString());
                     objArch.Contenido = tabla["contenido"].ToString();
-                    //MessageBox.Show(tabla["pendiente"].ToString());
-                    //objArch.Pendiente = Convert.ToBoolean(tabla["pendiente"].ToString());
+                    objArch.Pendiente = Convert.ToBoolean(tabla["pendiente"].ToString());
                     arrayArch.Add(objArch);
                 }
                 return arrayArch;
             }
             catch (Exception ex)
             {
+                conector.Close();
                 MessageBox.Show("Fallo la consulta " + ex.ToString());
                 return null;
             }
@@ -125,6 +127,7 @@ namespace Recuerdos.Utilidades
             }
             catch (SqlException e)
             {
+                conector.Close();
                 MessageBox.Show("Fallo la consulta" + e.ToString());
                 return num;
             }

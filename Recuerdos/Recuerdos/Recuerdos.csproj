@@ -54,6 +54,12 @@
     <Compile Include="Vista\crearSueñosRecuerdos.Designer.cs">
       <DependentUpon>crearSueñosRecuerdos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Ingreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\Ingreso.Designer.cs">
+      <DependentUpon>Ingreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Recuerdos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,9 @@
     <Compile Include="Utilidades\Conexion.cs" />
     <EmbeddedResource Include="Vista\crearSueñosRecuerdos.resx">
       <DependentUpon>crearSueñosRecuerdos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\Ingreso.resx">
+      <DependentUpon>Ingreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\Recuerdos.resx">
       <DependentUpon>Recuerdos.cs</DependentUpon>

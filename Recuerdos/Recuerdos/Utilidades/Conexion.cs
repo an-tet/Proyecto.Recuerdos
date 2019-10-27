@@ -65,17 +65,12 @@ namespace Recuerdos.Utilidades
                 SqlDataReader tabla = comando.ExecuteReader();
                 while (tabla.Read())
                 {
-                    Directorio objDir = new Directorio();
+                    Recuerdo objDir = new Recuerdo();
                     objDir.Id = Convert.ToDouble(tabla["id"].ToString());
-                    if (tabla[1].ToString()=="")
-                    {
-                        objDir.Padre = 0;
-                    }
-                    else
-                    {
-                        objDir.Padre = Convert.ToDouble(tabla[1].ToString());
-                    }                    
+                    objDir.Padre = Convert.ToDouble(tabla["id_padre"].ToString());            
                     objDir.Nombre = tabla["nombre"].ToString();
+                    objDir.Id_usuario = Convert.ToDouble(tabla["id_usuario"].ToString());
+                    objDir.Tipo = Convert.ToInt32(tabla["tipo"].ToString());
                     arrayDir.Add(objDir);                    
                 }
                 return arrayDir;
@@ -97,10 +92,11 @@ namespace Recuerdos.Utilidades
                 SqlDataReader tabla = comando.ExecuteReader();
                 while (tabla.Read())
                 {
-                    Archivo objArch = new Archivo();
+                    Sueno objArch = new Sueno();
                     objArch.Id = Convert.ToInt32(tabla["id"].ToString());
+                    objArch.Id_usuario = Convert.ToDouble(tabla["id_usuario"].ToString());
+                    objArch.Id_recuerdo = Convert.ToInt32(tabla["id_recuerdo"].ToString());
                     objArch.Nombre = tabla["nombre"].ToString();
-                    objArch.Id_directorio = Convert.ToInt32(tabla["id_directorio"].ToString());
                     objArch.Contenido = tabla["contenido"].ToString();
                     objArch.Pendiente = Convert.ToBoolean(tabla["pendiente"].ToString());
                     arrayArch.Add(objArch);

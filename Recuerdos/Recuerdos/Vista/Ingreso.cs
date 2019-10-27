@@ -18,21 +18,26 @@ namespace Recuerdos.Vista
         Conexion objCon = new Conexion();
         SqlConnection con;
         SqlDataReader consulta;
+
+        //constructor sobrecargado
         public Ingreso(Recuerdos.pnPrincipal objR)
         {
             InitializeComponent();
         }
+
+        //constructor vacio
         public Ingreso()
         {
             InitializeComponent();
         }
-
+        
+        //Valida si las credenciales son correctas y de serlo envia al pnprincipal de Recuerdos (ORGANIZAR CON OBJETO DE USUARIO DE SER NECESARIO)
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             if (txtClave.Text!="" && txtUsuario.Text!="")
             {
                 con = objCon.conectar();
-                consulta = objCon.consulta("select * from usuarios where usuario='"+txtUsuario.Text+"'", con);
+                consulta = objCon.consulta("select * from usuario where usuario='"+txtUsuario.Text+"'", con);
                 if (consulta.Read())
                 {
                     String clave = consulta["contracena"].ToString();
@@ -61,16 +66,20 @@ namespace Recuerdos.Vista
             }
         }
 
+        //borra los datos que hay en las credenciales
         void limpiarCampos()
         {
             txtClave.Text = "";
             txtUsuario.Text = "";
         }
+
+        //Sale de la aplicacion
         private void btbSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
+  
+        //acciones cuando le dan al boton de salir
         private void Ingreso_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();

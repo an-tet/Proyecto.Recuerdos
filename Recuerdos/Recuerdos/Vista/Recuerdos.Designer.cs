@@ -37,9 +37,13 @@
             this.tsmOcultarRecuerdos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCambiarNombre = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
+            this.tipoヾーノToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trabajoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.estudioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.personalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imgArchivos = new System.Windows.Forms.ImageList(this.components);
             this.mainSlipContainer = new System.Windows.Forms.SplitContainer();
-            this.pbWrapper = new System.Windows.Forms.PictureBox();
+            this.txtSueño = new System.Windows.Forms.RichTextBox();
             this.csmTextBox = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmCopiar = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCortar = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +52,7 @@
             this.tsmLimpiarSueño = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmCerrarSueño = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeshacer = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbWrapper = new System.Windows.Forms.PictureBox();
             this.ofdNota = new System.Windows.Forms.OpenFileDialog();
             this.sfdNota = new System.Windows.Forms.SaveFileDialog();
             this.pnMenu = new System.Windows.Forms.Panel();
@@ -83,18 +88,13 @@
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtSueño = new System.Windows.Forms.RichTextBox();
-            this.tipoヾーノToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trabajoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.estudioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.personalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsTreeView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).BeginInit();
             this.mainSlipContainer.Panel1.SuspendLayout();
             this.mainSlipContainer.Panel2.SuspendLayout();
             this.mainSlipContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbWrapper)).BeginInit();
             this.csmTextBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWrapper)).BeginInit();
             this.pnMenu.SuspendLayout();
             this.mnPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -167,6 +167,37 @@
             this.tsmEliminar.Text = "Eliminar   X﹏X";
             this.tsmEliminar.Click += new System.EventHandler(this.eliminarcToolStripMenuItem_Click);
             // 
+            // tipoヾーノToolStripMenuItem
+            // 
+            this.tipoヾーノToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.trabajoToolStripMenuItem,
+            this.estudioToolStripMenuItem1,
+            this.personalToolStripMenuItem});
+            this.tipoヾーノToolStripMenuItem.Name = "tipoヾーノToolStripMenuItem";
+            this.tipoヾーノToolStripMenuItem.Size = new System.Drawing.Size(260, 24);
+            this.tipoヾーノToolStripMenuItem.Text = "Tipo ヾ(＠⌒ー⌒＠)ノ";
+            // 
+            // trabajoToolStripMenuItem
+            // 
+            this.trabajoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("trabajoToolStripMenuItem.Image")));
+            this.trabajoToolStripMenuItem.Name = "trabajoToolStripMenuItem";
+            this.trabajoToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.trabajoToolStripMenuItem.Text = "Trabajo";
+            // 
+            // estudioToolStripMenuItem1
+            // 
+            this.estudioToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("estudioToolStripMenuItem1.Image")));
+            this.estudioToolStripMenuItem1.Name = "estudioToolStripMenuItem1";
+            this.estudioToolStripMenuItem1.Size = new System.Drawing.Size(139, 26);
+            this.estudioToolStripMenuItem1.Text = "Estudio";
+            // 
+            // personalToolStripMenuItem
+            // 
+            this.personalToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("personalToolStripMenuItem.Image")));
+            this.personalToolStripMenuItem.Name = "personalToolStripMenuItem";
+            this.personalToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.personalToolStripMenuItem.Text = "Personal";
+            // 
             // imgArchivos
             // 
             this.imgArchivos.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgArchivos.ImageStream")));
@@ -203,17 +234,18 @@
             this.mainSlipContainer.TabIndex = 1;
             this.mainSlipContainer.MouseHover += new System.EventHandler(this.mainSlipContainer_MouseHover);
             // 
-            // pbWrapper
+            // txtSueño
             // 
-            this.pbWrapper.BackColor = System.Drawing.SystemColors.Window;
-            this.pbWrapper.Image = ((System.Drawing.Image)(resources.GetObject("pbWrapper.Image")));
-            this.pbWrapper.Location = new System.Drawing.Point(3, 268);
-            this.pbWrapper.Name = "pbWrapper";
-            this.pbWrapper.Size = new System.Drawing.Size(34, 31);
-            this.pbWrapper.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbWrapper.TabIndex = 5;
-            this.pbWrapper.TabStop = false;
-            this.pbWrapper.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.txtSueño.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.txtSueño.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSueño.ContextMenuStrip = this.csmTextBox;
+            this.txtSueño.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSueño.Location = new System.Drawing.Point(0, 0);
+            this.txtSueño.Name = "txtSueño";
+            this.txtSueño.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.txtSueño.Size = new System.Drawing.Size(897, 578);
+            this.txtSueño.TabIndex = 6;
+            this.txtSueño.Text = "";
             // 
             // csmTextBox
             // 
@@ -288,6 +320,18 @@
             this.tsmDeshacer.Text = "Deshacer";
             this.tsmDeshacer.Visible = false;
             this.tsmDeshacer.Click += new System.EventHandler(this.deshacerToolStripMenuItem1_Click);
+            // 
+            // pbWrapper
+            // 
+            this.pbWrapper.BackColor = System.Drawing.SystemColors.Window;
+            this.pbWrapper.Image = ((System.Drawing.Image)(resources.GetObject("pbWrapper.Image")));
+            this.pbWrapper.Location = new System.Drawing.Point(3, 268);
+            this.pbWrapper.Name = "pbWrapper";
+            this.pbWrapper.Size = new System.Drawing.Size(34, 31);
+            this.pbWrapper.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbWrapper.TabIndex = 5;
+            this.pbWrapper.TabStop = false;
+            this.pbWrapper.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // ofdNota
             // 
@@ -553,75 +597,31 @@
             // contenidoToolStripMenuItem
             // 
             this.contenidoToolStripMenuItem.Name = "contenidoToolStripMenuItem";
-            this.contenidoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.contenidoToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.contenidoToolStripMenuItem.Text = "&Contenido";
             // 
             // índiceToolStripMenuItem
             // 
             this.índiceToolStripMenuItem.Name = "índiceToolStripMenuItem";
-            this.índiceToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.índiceToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.índiceToolStripMenuItem.Text = "Índic&e";
             // 
             // buscarToolStripMenuItem
             // 
             this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.buscarToolStripMenuItem.Text = "&Buscar";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(213, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(174, 6);
             // 
             // acercadeToolStripMenuItem
             // 
             this.acercadeToolStripMenuItem.Name = "acercadeToolStripMenuItem";
-            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.acercadeToolStripMenuItem.Text = "&Acerca de...";
-            // 
-            // txtSueño
-            // 
-            this.txtSueño.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.txtSueño.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSueño.ContextMenuStrip = this.csmTextBox;
-            this.txtSueño.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSueño.Location = new System.Drawing.Point(0, 0);
-            this.txtSueño.Name = "txtSueño";
-            this.txtSueño.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.txtSueño.Size = new System.Drawing.Size(897, 578);
-            this.txtSueño.TabIndex = 6;
-            this.txtSueño.Text = "";
-            // 
-            // tipoヾーノToolStripMenuItem
-            // 
-            this.tipoヾーノToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.trabajoToolStripMenuItem,
-            this.estudioToolStripMenuItem1,
-            this.personalToolStripMenuItem});
-            this.tipoヾーノToolStripMenuItem.Name = "tipoヾーノToolStripMenuItem";
-            this.tipoヾーノToolStripMenuItem.Size = new System.Drawing.Size(260, 24);
-            this.tipoヾーノToolStripMenuItem.Text = "Tipo ヾ(＠⌒ー⌒＠)ノ";
-            // 
-            // trabajoToolStripMenuItem
-            // 
-            this.trabajoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("trabajoToolStripMenuItem.Image")));
-            this.trabajoToolStripMenuItem.Name = "trabajoToolStripMenuItem";
-            this.trabajoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.trabajoToolStripMenuItem.Text = "Trabajo";
-            // 
-            // estudioToolStripMenuItem1
-            // 
-            this.estudioToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("estudioToolStripMenuItem1.Image")));
-            this.estudioToolStripMenuItem1.Name = "estudioToolStripMenuItem1";
-            this.estudioToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
-            this.estudioToolStripMenuItem1.Text = "Estudio";
-            // 
-            // personalToolStripMenuItem
-            // 
-            this.personalToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("personalToolStripMenuItem.Image")));
-            this.personalToolStripMenuItem.Name = "personalToolStripMenuItem";
-            this.personalToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.personalToolStripMenuItem.Text = "Personal";
             // 
             // pnPrincipal
             // 
@@ -644,8 +644,8 @@
             this.mainSlipContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).EndInit();
             this.mainSlipContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbWrapper)).EndInit();
             this.csmTextBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbWrapper)).EndInit();
             this.pnMenu.ResumeLayout(false);
             this.pnMenu.PerformLayout();
             this.mnPrincipal.ResumeLayout(false);

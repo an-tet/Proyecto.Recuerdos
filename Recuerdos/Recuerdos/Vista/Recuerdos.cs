@@ -23,7 +23,7 @@ namespace Recuerdos
         //sirve para saber el ID del usuario logueado actualmente
         int usuario;
         //sirve para saber cual es el texto que tiene un archivo cuando se abre
-        String textoCuandoAbre = "";
+        String textoCuandoAbre = "", antes;
         //Arraylist para manejar los directorios existentes en la BD
         public static ArrayList lista_directorios = new ArrayList();
 
@@ -45,11 +45,11 @@ namespace Recuerdos
         //CONSTRUCTOR
         public pnPrincipal(int usuario)
         {
-            
+
             InitializeComponent();
             tvSuenos.Nodes.Clear();
             lista_archivos.Clear();
-            lista_directorios.Clear();        
+            lista_directorios.Clear();
             desHabilitarComponenes();
             this.Focus();
             this.usuario = usuario;
@@ -57,7 +57,7 @@ namespace Recuerdos
         }
 
         //llena el tree view        
-        Boolean InicializarTree()
+        public Boolean InicializarTree()
         {
             //Instancias del metodo
             TreeNode nodo = null;
@@ -65,10 +65,10 @@ namespace Recuerdos
             try
             {
                 con = objCon.conectar();
-                lista_directorios = objCon.consultaDir("select * from  directorio where id_usuarios="+usuario+"", con);
+                lista_directorios = objCon.consultaDir("select * from  directorio where id_usuarios=" + usuario + "", con);
                 objCon.cerrar(con);
                 con = objCon.conectar();
-                lista_archivos = objCon.consultaArch("select * from  archivo where id_usuarios="+usuario+"", con);
+                lista_archivos = objCon.consultaArch("select * from  archivo where id_usuarios=" + usuario + "", con);
                 if (lista_directorios != null)
                 {
                     if (lista_directorios.Count > 0)
@@ -89,6 +89,25 @@ namespace Recuerdos
                                 {
                                     foreach (Archivo a in lista_archivos)
                                     {
+                                        if (a.Id_directorio == 0)
+                                        {
+                                            if (a.Pendiente == true)
+                                            {
+                                                c = Color.Red;
+                                            }
+                                            else
+                                            {
+                                                c = Color.White;
+                                            }
+                                            tvSuenos.Nodes.Add(new TreeNode
+                                            {
+                                                Text = a.Nombre,
+                                                Tag = "arch",
+                                                ImageIndex = 1,
+                                                SelectedImageIndex = 1,
+                                                BackColor = c
+                                            });
+                                        }
                                         if (a.Id_directorio == d.Id)
                                         {
                                             if (a.Pendiente == true)
@@ -188,6 +207,7 @@ namespace Recuerdos
             herramientasToolStripMenuItem.Enabled = true;
             txtSueño.Visible = true;
             btnSinAcabar.Visible = true;
+            pbWrapper.BackColor = Color.LightSteelBlue;
         }
 
         //metodo que desabilita componentes en caso de que no halla un sueño abierto
@@ -245,20 +265,59 @@ namespace Recuerdos
         TreeNode seleccion = null;
         private void nuevaCarpetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            seleccion = tvSuenos.SelectedNode;
+            if (seleccion.Tag.ToString() != "arch")
+            {
+                crearSueñosRecuerdos csr = new crearSueñosRecuerdos("arch", seleccion, usuario);
+                csr.Show();
+            }
+            else
+            {
+                MessageBox.Show("Lo sentimos un sueño no puede tener sueños dentro :c.");
+            }
         }
 
         //Opcion que elimina tree node del tree view por medio de click derecho (SIN ACOPLAR A BD)
         private void eliminarcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tvSuenos.Nodes.Remove(tvSuenos.SelectedNode);
+            foreach (Directorio d in lista_directorios)
+            {
+                if (d.Nombre==seleccion.Text)
+                {
+                    //eliminar nodo padre
+                    eliminarNodo(d.Nombre,d.Id);
+                    return;
+                }
+            }
+            
             //Eliminar de la base de datos y actualizar el treeview
         }
 
+        void eliminarNodo(String nombre, double id)
+        {
+            if (seleccion.Tag.ToString()=="dir")
+            {
+                foreach (Directorio d in lista_directorios)
+                {
+                    if (d.Padre==id)
+                    {
+                        //busca mas carpetas hijas
+                        //slimina archivo hijo
+                        //elimina carpeta hijo
+                    }
+                }
+            }
+            else
+            {
+
+            }
+        }
         //Opcion que permite el cambio de nombre por medio de click derecho en el treenode 
         private void cambiarNombreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tvSuenos.SelectedNode.BeginEdit();
+            tvSuenos.LabelEdit = true;
+            seleccion.BeginEdit();
+            antes = seleccion.Text;
         }
 
         //Funcionalidad de doble click que permite abrir el contenido de un nodo en el txtNota con la BD
@@ -290,13 +349,13 @@ namespace Recuerdos
             }
         }
 
-        //metodo generico para abrir un sueño m
+        //metodo generico para abrir un sueño
         void abrirNota()
         {
             SqlDataReader consulta;
             con = objCon.conectar();
             nodoAbierto = tvSuenos.SelectedNode;
-            consulta = objCon.consulta("select contenido from archivo where nombre ='" + nodoAbierto.Text + "' and id_usuarios="+usuario+"", con);
+            consulta = objCon.consulta("select contenido from archivo where nombre ='" + nodoAbierto.Text + "' and id_usuarios=" + usuario + "", con);
             while (consulta.Read())
             {
                 txtSueño.Text = consulta["contenido"].ToString();
@@ -327,7 +386,7 @@ namespace Recuerdos
             {
                 String nota = txtSueño.Text;
                 con = objCon.conectar();
-                objCon.operar("update archivo set contenido='" + nota + "' where nombre='" + nodoAbierto.Text + "' and id_usuarios="+usuario+"", con);
+                objCon.operar("update archivo set contenido='" + nota + "' where nombre='" + nodoAbierto.Text + "' and id_usuarios=" + usuario + "", con);
                 textoCuandoAbre = nota;
                 return true;
             }
@@ -445,6 +504,7 @@ namespace Recuerdos
             }
         }
 
+
         //Limpia todo lo que hay en el sueño
         private void limpiarSueñoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -482,7 +542,7 @@ namespace Recuerdos
         {
             int cambio;
             con = objCon.conectar();
-            cambio = objCon.operar("update archivo set pendiente=" + estado + "where nombre='" + nodoAbierto.Text + "' and id_usuarios="+usuario+"", con);
+            cambio = objCon.operar("update archivo set pendiente=" + estado + "where nombre='" + nodoAbierto.Text + "' and id_usuarios=" + usuario + "", con);
             if (cambio > 0)
             {
                 if (estado == 1)
@@ -500,33 +560,37 @@ namespace Recuerdos
 
         //SIN TERMINAR (crea un nuevo recuerdo)
         private void tsmNuevoRecuerdo_Click(object sender, EventArgs e)
-        {            
+        {
             seleccion = tvSuenos.SelectedNode;
             if (seleccion.Tag.ToString() != "arch")
             {
-                crearSueñosRecuerdos csr = new crearSueñosRecuerdos("recuerdo", seleccion);
+                crearSueñosRecuerdos csr = new crearSueñosRecuerdos("dir", seleccion, usuario);
                 csr.Show();
+            }
+            else
+            {
+                MessageBox.Show("Lo sentimos un sueño no puede tener recuerdos :c.");
             }
         }
 
         //SIN TERMINAR (oculta u muestra la ventana de recuerdos con un shortcut (stackoverflow))
         private void ocultarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            if (this.WindowState==FormWindowState.Minimized)
+
+            if (this.WindowState == FormWindowState.Minimized)
             {
                 this.WindowState = FormWindowState.Maximized;
             }
             else
             {
-                this.WindowState = FormWindowState.Minimized;  
-                
+                this.WindowState = FormWindowState.Minimized;
+
             }
         }
 
         //Boton para cerrar la sesion del gestor de recuerdos
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
+        {
             Ingreso objIng = new Ingreso(this);
             desHabilitarComponenes();
             objIng.Show();
@@ -536,7 +600,22 @@ namespace Recuerdos
         //Programacion del boton de salida panel principal
         private void pnPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            if (textoCuandoAbre != txtSueño.Text)
+            {
+                var respuesta = MessageBox.Show("¿Desea guardar los cambios hechos antes de cerrar el sueño?", "", MessageBoxButtons.YesNo);
+                if (respuesta == DialogResult.Yes)
+                {
+                    if (ActualizarSueño())
+                    {
+                        Application.Exit();
+                    }
+                }
+                else if (respuesta == DialogResult.No)
+                {
+                    Application.Exit();
+                }
+            }
+
         }
 
         //Programacion del boton de saida menu principal
@@ -545,6 +624,110 @@ namespace Recuerdos
             Application.Exit();
         }
 
+        private void tvSuenos_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            seleccion = tvSuenos.SelectedNode;
+
+        }
+
+        private void tvSuenos_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            int num = 0;
+            if (e.Label != null)
+            {
+                if (e.Label.Length > 0)
+                {
+                    if (seleccion.Tag.ToString() == "dir")
+                    {
+                        con = objCon.conectar();
+                        num = objCon.operar("update directorio set nombre='" + e.Label + "' where nombre='" + seleccion.Text + "' and id_usuarios=" + usuario + "", con);
+                        if (num > 0)
+                        {
+                            seleccion.EndEdit(false);
+                            tvSuenos.LabelEdit = false;
+                        }
+                        else
+                        {
+                            seleccion.EndEdit(true);
+                            tvSuenos.LabelEdit = false;
+                        }
+                    }
+                    else
+                    {
+                        con = objCon.conectar();
+                        num = objCon.operar("update archivo set nombre='" + e.Label + "' where nombre='" + seleccion.Text + "' and id_usuarios=" + usuario + "", con);
+                        if (num > 0)
+                        {
+                            seleccion.EndEdit(false);
+                            tvSuenos.LabelEdit = false;
+                        }
+                        else
+                        {
+                            seleccion.EndEdit(true);
+                            tvSuenos.LabelEdit = false;
+                        }
+                    }
+                    e.Node.EndEdit(false);
+                }
+            }
+        }
+
+        private void deshacerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //txtNota.Text=(String)Clipboard.GetData(DataFormats.Text);
+            txtSueño.Undo();
+        }
+
+        private void rehacerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txtSueño.Redo();
+        }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                con = objCon.conectar();
+                objCon.operar("insert into directorio values(NULL,'Nuevo recuerdo'," + usuario + ");", con);
+                tvSuenos.LabelEdit = true;
+                seleccion=tvSuenos.Nodes.Add("Nueva carpeta","Nuevo recuerdo",0,0);
+                seleccion.Tag = "dir";
+                //tvSuenos.Nodes.Add(new TreeNode
+                //{
+                //    Text = "Nuevo recuerdo",
+                //    Tag = "dir",
+                //    ImageIndex = 1,
+                //    SelectedImageIndex = 1,
+                //    BackColor = Color.White
+                //});
+                //seleccion = tvSuenos.Nodes.Add("Nuevo recuerdo", false)[0];
+                tvSuenos.Focus();
+                seleccion.BeginEdit();
+                antes = seleccion.Text;
+            }
+            catch (Exception ex)
+            {
+                objCon.cerrar(con);
+                con = objCon.conectar();
+                objCon.operar("delete from directorio where nombre ='Nuevo recuerdo'", con);
+                tvSuenos.Nodes.Remove(seleccion);
+                MessageBox.Show("Lo sentimos ah ocurrido un error al crear el recuerdo intentelo mas tarde.");
+                //MessageBox.Show(ex.ToString());
+            }
+        }
+
+        //public void crearSuenoRaiz(String nombre)
+        //{
+        //    tvSuenos.Nodes.Add(new TreeNode
+        //    {
+        //        Text = nombre,
+        //        Tag = "arch",
+        //        ImageIndex = 1,
+        //        SelectedImageIndex = 1,
+        //        BackColor = Color.White
+        //    });
+
+        //}
         //public pnPrincipal()
         //{
         //    InitializeComponent();

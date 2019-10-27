@@ -49,7 +49,7 @@
             // 
             this.btnCrear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCrear.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrear.Location = new System.Drawing.Point(75, 120);
+            this.btnCrear.Location = new System.Drawing.Point(31, 115);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(93, 38);
             this.btnCrear.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             this.Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Cancelar.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cancelar.Location = new System.Drawing.Point(231, 120);
+            this.Cancelar.Location = new System.Drawing.Point(213, 115);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(93, 38);
             this.Cancelar.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             // txtNuevoNombre
             // 
-            this.txtNuevoNombre.Location = new System.Drawing.Point(75, 62);
+            this.txtNuevoNombre.Location = new System.Drawing.Point(45, 57);
             this.txtNuevoNombre.Name = "txtNuevoNombre";
             this.txtNuevoNombre.Size = new System.Drawing.Size(249, 22);
             this.txtNuevoNombre.TabIndex = 3;
@@ -81,7 +81,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(426, 170);
+            this.ClientSize = new System.Drawing.Size(347, 166);
             this.Controls.Add(this.txtNuevoNombre);
             this.Controls.Add(this.Cancelar);
             this.Controls.Add(this.btnCrear);

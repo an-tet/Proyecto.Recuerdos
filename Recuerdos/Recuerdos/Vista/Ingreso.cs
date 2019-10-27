@@ -32,11 +32,12 @@ namespace Recuerdos.Vista
             if (txtClave.Text!="" && txtUsuario.Text!="")
             {
                 con = objCon.conectar();
-                consulta = objCon.consulta("select * from usuarios where usuario='" + txtUsuario.Text + "'", con);
+                consulta = objCon.consulta("select * from usuarios where usuario='"+txtUsuario.Text+"'", con);
                 if (consulta.Read())
                 {
                     String clave = consulta["contracena"].ToString();
-                    if (clave == txtClave.Text)
+                    String usuario = consulta["usuario"].ToString();
+                    if (clave == txtClave.Text && txtUsuario.Text==usuario)
                     {
                         Recuerdos.pnPrincipal obj = new Recuerdos.pnPrincipal(Convert.ToInt32(consulta["id"].ToString()));
                         limpiarCampos();

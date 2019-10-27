@@ -46,8 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modelo\Archivo.cs" />
-    <Compile Include="Modelo\Directorio.cs" />
+    <Compile Include="Modelo\Sueno.cs" />
+    <Compile Include="Modelo\Recuerdo.cs" />
+    <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Vista\crearSueñosRecuerdos.cs">
       <SubType>Form</SubType>
     </Compile>

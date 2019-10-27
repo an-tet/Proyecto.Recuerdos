@@ -65,50 +65,50 @@ namespace Recuerdos
             try
             {
                 con = objCon.conectar();
-                lista_directorios = objCon.consultaDir("select * from  directorio where id_usuarios=" + usuario + "", con);
+                lista_directorios = objCon.consultaDir("select * from  recuerdo where id_usuario=" + usuario + "", con);
                 objCon.cerrar(con);
                 con = objCon.conectar();
-                lista_archivos = objCon.consultaArch("select * from  archivo where id_usuarios=" + usuario + "", con);
+                lista_archivos = objCon.consultaArch("select * from  sueno where id_usuario=" + usuario + "", con);
                 if (lista_directorios != null)
                 {
                     if (lista_directorios.Count > 0)
                     {
-                        foreach (Directorio d in lista_directorios)
+                        foreach (Recuerdo d in lista_directorios)
                         {
                             if (d.Padre == 0)
                             {
                                 nodo = new TreeNode
                                 {
                                     Text = d.Nombre,
-                                    Tag = "dir",
-                                    ImageIndex = 0,
-                                    SelectedImageIndex = 0,
+                                    Tag = d.Padre,
+                                    ImageIndex = d.Tipo,
+                                    SelectedImageIndex = d.Tipo,
                                 };
                                 tvSuenos.Nodes.Add(nodo);
                                 if (lista_archivos.Count > 0)
                                 {
-                                    foreach (Archivo a in lista_archivos)
+                                    foreach (Sueno a in lista_archivos)
                                     {
-                                        if (a.Id_directorio == 0)
-                                        {
-                                            if (a.Pendiente == true)
-                                            {
-                                                c = Color.Red;
-                                            }
-                                            else
-                                            {
-                                                c = Color.White;
-                                            }
-                                            tvSuenos.Nodes.Add(new TreeNode
-                                            {
-                                                Text = a.Nombre,
-                                                Tag = "arch",
-                                                ImageIndex = 1,
-                                                SelectedImageIndex = 1,
-                                                BackColor = c
-                                            });
-                                        }
-                                        if (a.Id_directorio == d.Id)
+                                        //if (a.Id_recuerdo == 0)
+                                        //{
+                                        //    if (a.Pendiente == true)
+                                        //    {
+                                        //        c = Color.Red;
+                                        //    }
+                                        //    else
+                                        //    {
+                                        //        c = Color.White;
+                                        //    }
+                                        //    tvSuenos.Nodes.Add(new TreeNode
+                                        //    {
+                                        //        Text = a.Nombre,
+                                        //        Tag = "arch",
+                                        //        ImageIndex = 1,
+                                        //        SelectedImageIndex = 1,
+                                        //        BackColor = c
+                                        //    });
+                                        //}
+                                        if (a.Id_recuerdo == d.Id)
                                         {
                                             if (a.Pendiente == true)
                                             {
@@ -121,7 +121,7 @@ namespace Recuerdos
                                             nodo.Nodes.Add(new TreeNode
                                             {
                                                 Text = a.Nombre,
-                                                Tag = "arch",
+                                                Tag = d.Id,
                                                 ImageIndex = 1,
                                                 SelectedImageIndex = 1,
                                                 BackColor = c
@@ -154,23 +154,23 @@ namespace Recuerdos
         public void cargarHijos(TreeNode node, double id, ArrayList alDir, ArrayList alArch)
         {
             Color c = Color.Transparent;
-            foreach (Directorio d in alDir)
+            foreach (Recuerdo d in alDir)
             {
                 if (id == d.Padre)
                 {
                     node2 = new TreeNode
                     {
                         Text = d.Nombre,
-                        Tag = "dir",
-                        ImageIndex = 0,
-                        SelectedImageIndex = 0,
+                        Tag = id,
+                        ImageIndex = d.Tipo,
+                        SelectedImageIndex = d.Tipo,
                     };
                     node.Nodes.Add(node2);
                     if (alArch.Count > 0)
                     {
-                        foreach (Archivo a in alArch)
+                        foreach (Sueno a in alArch)
                         {
-                            if (a.Id_directorio == d.Id)
+                            if (a.Id_recuerdo == d.Id)
                             {
                                 if (a.Pendiente == true)
                                 {
@@ -183,7 +183,7 @@ namespace Recuerdos
                                 node2.Nodes.Add(new TreeNode
                                 {
                                     Text = a.Nombre,
-                                    Tag = "arch",
+                                    Tag = d.Id,
                                     ImageIndex = 1,
                                     SelectedImageIndex = 1,
                                     BackColor = c
@@ -266,7 +266,7 @@ namespace Recuerdos
         private void nuevaCarpetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             seleccion = tvSuenos.SelectedNode;
-            if (seleccion.Tag.ToString() != "arch")
+            if (seleccion.SelectedImageIndex == 1)
             {
                 crearSueñosRecuerdos csr = new crearSueñosRecuerdos("arch", seleccion, usuario);
                 csr.Show();
@@ -280,7 +280,7 @@ namespace Recuerdos
         //Opcion que elimina tree node del tree view por medio de click derecho (SIN ACOPLAR A BD)
         private void eliminarcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (Directorio d in lista_directorios)
+            foreach (Recuerdo d in lista_directorios)
             {
                 if (d.Nombre==seleccion.Text)
                 {
@@ -295,9 +295,9 @@ namespace Recuerdos
 
         void eliminarNodo(String nombre, double id)
         {
-            if (seleccion.Tag.ToString()=="dir")
+            if (seleccion.SelectedImageIndex == 0)
             {
-                foreach (Directorio d in lista_directorios)
+                foreach (Recuerdo d in lista_directorios)
                 {
                     if (d.Padre==id)
                     {
@@ -329,7 +329,7 @@ namespace Recuerdos
                 {
                     if (salirDeSueno() != "cancel")
                     {
-                        if (tvSuenos.SelectedNode != null && tvSuenos.SelectedNode.Tag.ToString() == "arch")
+                        if (tvSuenos.SelectedNode != null && seleccion.SelectedImageIndex == 1)
                         {
                             abrirNota();
                         }
@@ -337,7 +337,7 @@ namespace Recuerdos
                 }
                 else
                 {
-                    if (tvSuenos.SelectedNode != null && tvSuenos.SelectedNode.Tag.ToString() == "arch")
+                    if (tvSuenos.SelectedNode != null && seleccion.SelectedImageIndex == 1)
                     {
                         abrirNota();
                     }
@@ -355,7 +355,7 @@ namespace Recuerdos
             SqlDataReader consulta;
             con = objCon.conectar();
             nodoAbierto = tvSuenos.SelectedNode;
-            consulta = objCon.consulta("select contenido from archivo where nombre ='" + nodoAbierto.Text + "' and id_usuarios=" + usuario + "", con);
+            consulta = objCon.consulta("select contenido from sueno where nombre ='" + nodoAbierto.Text + "' and id_usuario=" + usuario + "", con);
             while (consulta.Read())
             {
                 txtSueño.Text = consulta["contenido"].ToString();
@@ -379,6 +379,8 @@ namespace Recuerdos
             }
         }
 
+        //REVISAR CONSULTA DE ACTUALIZAR SUEÑO
+
         //metodo generico para actualizar el valor del sueño
         public Boolean ActualizarSueño()
         {
@@ -386,7 +388,7 @@ namespace Recuerdos
             {
                 String nota = txtSueño.Text;
                 con = objCon.conectar();
-                objCon.operar("update archivo set contenido='" + nota + "' where nombre='" + nodoAbierto.Text + "' and id_usuarios=" + usuario + "", con);
+                objCon.operar("update sueno set contenido='" + nota + "' where nombre='" + nodoAbierto.Text + "' and id_usuario=" + usuario + "", con);
                 textoCuandoAbre = nota;
                 return true;
             }
@@ -537,12 +539,14 @@ namespace Recuerdos
             }
         }
 
+        //REVISAR CONSULTA E ACTUALIZAR PENDIENTE CON RESPECTO A EL ID DEL DIRECTORIO
+
         //Actualiza en la BD el texto que esta abierto en el momento
         public void actualizarPendiente(int estado)
         {
             int cambio;
             con = objCon.conectar();
-            cambio = objCon.operar("update archivo set pendiente=" + estado + "where nombre='" + nodoAbierto.Text + "' and id_usuarios=" + usuario + "", con);
+            cambio = objCon.operar("update sueno set pendiente=" + estado + "where nombre='" + nodoAbierto.Text + "' and id_usuario=" + usuario + "", con);
             if (cambio > 0)
             {
                 if (estado == 1)
@@ -558,11 +562,11 @@ namespace Recuerdos
             }
         }
 
-        //SIN TERMINAR (crea un nuevo recuerdo)
+        //Crea un nuevo recuerdo como nodo raiz.
         private void tsmNuevoRecuerdo_Click(object sender, EventArgs e)
         {
             seleccion = tvSuenos.SelectedNode;
-            if (seleccion.Tag.ToString() != "arch")
+            if (seleccion.SelectedImageIndex == 0)
             {
                 crearSueñosRecuerdos csr = new crearSueñosRecuerdos("dir", seleccion, usuario);
                 csr.Show();
@@ -615,6 +619,10 @@ namespace Recuerdos
                     Application.Exit();
                 }
             }
+            else
+            {
+                Application.Exit();
+            }
 
         }
 
@@ -630,17 +638,28 @@ namespace Recuerdos
 
         }
 
+        //Despues de que el label del tree node es editado estas son las medidas que se toman
         private void tvSuenos_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
         {
             int num = 0;
+            double padre=0;
             if (e.Label != null)
             {
                 if (e.Label.Length > 0)
                 {
-                    if (seleccion.Tag.ToString() == "dir")
+                    if (seleccion.SelectedImageIndex == 0)
                     {
+                        padre = Convert.ToDouble(seleccion.Tag.ToString());
                         con = objCon.conectar();
-                        num = objCon.operar("update directorio set nombre='" + e.Label + "' where nombre='" + seleccion.Text + "' and id_usuarios=" + usuario + "", con);
+                        if (padre!=0)
+                        {
+                            num = objCon.operar("update recuerdo set nombre='" + e.Label + "' where nombre='" + seleccion.Text + "' and id_usuario=" + usuario + " and id_padre=" + padre + "", con);
+                        }
+                        else
+                        {
+                            num = objCon.operar("update recuerdo set nombre='" + e.Label + "' where nombre='" + seleccion.Text + "' and id_usuario=" + usuario + " and id_padre=0", con);
+                        }
+                        objCon.cerrar(con);
                         if (num > 0)
                         {
                             seleccion.EndEdit(false);
@@ -654,8 +673,10 @@ namespace Recuerdos
                     }
                     else
                     {
+                        padre = Convert.ToDouble(seleccion.Tag.ToString());
                         con = objCon.conectar();
-                        num = objCon.operar("update archivo set nombre='" + e.Label + "' where nombre='" + seleccion.Text + "' and id_usuarios=" + usuario + "", con);
+                        num = objCon.operar("update sueno set nombre='" + e.Label + "' where nombre='" + seleccion.Text + "' and id_usuario=" + usuario + " and id_recuerdo="+padre+"", con);
+                        objCon.cerrar(con);
                         if (num > 0)
                         {
                             seleccion.EndEdit(false);
@@ -672,35 +693,30 @@ namespace Recuerdos
             }
         }
 
+        //deshace lo hecho a el ultimo estado del texto
         private void deshacerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //txtNota.Text=(String)Clipboard.GetData(DataFormats.Text);
             txtSueño.Undo();
         }
 
+        //va un paso adelante del estado del texto
         private void rehacerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             txtSueño.Redo();
         }
 
+        //crea un nuevo recuerdo raiz
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 con = objCon.conectar();
-                objCon.operar("insert into directorio values(NULL,'Nuevo recuerdo'," + usuario + ");", con);
+                objCon.operar("insert into recuerdo values(" + usuario + ",0,'Nuevo recuerdo',0);", con);
+                objCon.cerrar(con);
                 tvSuenos.LabelEdit = true;
-                seleccion=tvSuenos.Nodes.Add("Nueva carpeta","Nuevo recuerdo",0,0);
+                seleccion=tvSuenos.Nodes.Add("Nuevo recuerdo","Nuevo recuerdo",0,0);
                 seleccion.Tag = "dir";
-                //tvSuenos.Nodes.Add(new TreeNode
-                //{
-                //    Text = "Nuevo recuerdo",
-                //    Tag = "dir",
-                //    ImageIndex = 1,
-                //    SelectedImageIndex = 1,
-                //    BackColor = Color.White
-                //});
-                //seleccion = tvSuenos.Nodes.Add("Nuevo recuerdo", false)[0];
                 tvSuenos.Focus();
                 seleccion.BeginEdit();
                 antes = seleccion.Text;
@@ -709,7 +725,7 @@ namespace Recuerdos
             {
                 objCon.cerrar(con);
                 con = objCon.conectar();
-                objCon.operar("delete from directorio where nombre ='Nuevo recuerdo'", con);
+                objCon.operar("delete from recuerdo where nombre ='Nuevo recuerdo' and id_usuario="+usuario+"", con);
                 tvSuenos.Nodes.Remove(seleccion);
                 MessageBox.Show("Lo sentimos ah ocurrido un error al crear el recuerdo intentelo mas tarde.");
                 //MessageBox.Show(ex.ToString());

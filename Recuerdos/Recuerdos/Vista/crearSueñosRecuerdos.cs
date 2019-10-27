@@ -67,15 +67,15 @@ namespace Recuerdos
                 con = objCon.conectar();
                 if (seleccion != null)
                 {
-                    consulta = objCon.consulta("select * from directorio where nombre='" + seleccion.Text + "' and id_usuarios=" + usuario + "", con);
+                    consulta = objCon.consulta("select * from recuerdo where nombre='" + seleccion.Text + "' and id_usuario=" + usuario + "", con);
                     if (consulta.Read())
                     {
                         padre = Convert.ToInt32(consulta["id"].ToString());
-                        objCon.cerrar(con);
                     }
                 }
+                objCon.cerrar(con);
                 con = objCon.conectar();
-                consulta = objCon.consulta("select * from archivo where nombre='" + txtNuevoNombre.Text + "' and id_usuarios=" + usuario + " and id_directorio=" + padre + "", con);
+                consulta = objCon.consulta("select * from sueno where nombre='" + txtNuevoNombre.Text + "' and id_usuario=" + usuario + " and id_recuerdo=" + padre + "", con);
                 if (consulta.Read())
                 {
                     MessageBox.Show("Lo sentimos ya existe un sueño con este nombre. （⊙ｏ⊙）");
@@ -84,12 +84,12 @@ namespace Recuerdos
                 else
                 {
                     con = objCon.conectar();
-                    objCon.operar("insert into archivo values('" + txtNuevoNombre.Text + "',NULL," + padre + ",0," + usuario + ")", con);
+                    objCon.operar("insert into sueno values(" + usuario + "," + padre + ",'" + txtNuevoNombre.Text + "',NULL,0)", con);
                     pnPrincipal objr = new pnPrincipal(usuario);
                     seleccion.Nodes.Add(new TreeNode
                     {
                         Text = txtNuevoNombre.Text,
-                        Tag = "arch",
+                        Tag = padre,
                         ImageIndex = 1,
                         SelectedImageIndex = 1,
                         BackColor = Color.White
@@ -112,14 +112,14 @@ namespace Recuerdos
             if (txtNuevoNombre.Text != "")
             {
                 con = objCon.conectar();
-                consulta = objCon.consulta("select * from directorio where nombre='" + seleccion.Text + "' and id_usuarios=" + usuario + "", con);
+                consulta = objCon.consulta("select * from recuerdo where nombre='" + seleccion.Text + "' and id_usuario=" + usuario + "", con);
                 if (consulta.Read())
                 {
                     padre = Convert.ToInt32(consulta["id"].ToString());
                     objCon.cerrar(con);
                 }
                 con = objCon.conectar();
-                consulta = objCon.consulta("select * from directorio where id_padre=" + padre + " and nombre='" + txtNuevoNombre.Text + "' and id_usuarios=" + usuario + "", con);
+                consulta = objCon.consulta("select * from recuerdo where id_padre=" + padre + " and nombre='" + txtNuevoNombre.Text + "' and id_usuario=" + usuario + "", con);
                 if (consulta.Read())
                 {
                     MessageBox.Show("Lo sentimos ya existe una recuerdo con este nombre. （⊙ｏ⊙）");
@@ -128,12 +128,12 @@ namespace Recuerdos
                 else
                 {
                     con = objCon.conectar();
-                    objCon.operar("insert into directorio values(" + padre + ",'" + txtNuevoNombre.Text + "'," + usuario + ")", con);
+                    objCon.operar("insert into recuerdo values(" + usuario + "," + padre + ",'" + txtNuevoNombre.Text + "',0)", con);
                     pnPrincipal objr = new pnPrincipal(usuario);
                     seleccion.Nodes.Add(new TreeNode
                     {
                         Text = txtNuevoNombre.Text,
-                        Tag = "dir",
+                        Tag = padre,
                         ImageIndex = 0,
                         SelectedImageIndex = 0
                     });

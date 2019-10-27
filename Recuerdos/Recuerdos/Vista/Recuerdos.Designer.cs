@@ -88,6 +88,7 @@
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.capetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsTreeView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).BeginInit();
             this.mainSlipContainer.Panel1.SuspendLayout();
@@ -170,6 +171,7 @@
             // tipoヾーノToolStripMenuItem
             // 
             this.tipoヾーノToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.capetaToolStripMenuItem,
             this.trabajoToolStripMenuItem,
             this.estudioToolStripMenuItem1,
             this.personalToolStripMenuItem});
@@ -181,22 +183,25 @@
             // 
             this.trabajoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("trabajoToolStripMenuItem.Image")));
             this.trabajoToolStripMenuItem.Name = "trabajoToolStripMenuItem";
-            this.trabajoToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.trabajoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.trabajoToolStripMenuItem.Text = "Trabajo";
+            this.trabajoToolStripMenuItem.Click += new System.EventHandler(this.trabajoToolStripMenuItem_Click);
             // 
             // estudioToolStripMenuItem1
             // 
             this.estudioToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("estudioToolStripMenuItem1.Image")));
             this.estudioToolStripMenuItem1.Name = "estudioToolStripMenuItem1";
-            this.estudioToolStripMenuItem1.Size = new System.Drawing.Size(139, 26);
+            this.estudioToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
             this.estudioToolStripMenuItem1.Text = "Estudio";
+            this.estudioToolStripMenuItem1.Click += new System.EventHandler(this.estudioToolStripMenuItem1_Click);
             // 
             // personalToolStripMenuItem
             // 
             this.personalToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("personalToolStripMenuItem.Image")));
             this.personalToolStripMenuItem.Name = "personalToolStripMenuItem";
-            this.personalToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.personalToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.personalToolStripMenuItem.Text = "Personal";
+            this.personalToolStripMenuItem.Click += new System.EventHandler(this.personalToolStripMenuItem_Click);
             // 
             // imgArchivos
             // 
@@ -623,6 +628,14 @@
             this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.acercadeToolStripMenuItem.Text = "&Acerca de...";
             // 
+            // capetaToolStripMenuItem
+            // 
+            this.capetaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("capetaToolStripMenuItem.Image")));
+            this.capetaToolStripMenuItem.Name = "capetaToolStripMenuItem";
+            this.capetaToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.capetaToolStripMenuItem.Text = "Capeta";
+            this.capetaToolStripMenuItem.Click += new System.EventHandler(this.capetaToolStripMenuItem_Click);
+            // 
             // pnPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -713,6 +726,7 @@
         private System.Windows.Forms.ToolStripMenuItem trabajoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem estudioToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem personalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem capetaToolStripMenuItem;
     }
 }
 

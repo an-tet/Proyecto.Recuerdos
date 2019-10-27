@@ -295,7 +295,7 @@ namespace Recuerdos
 
         void eliminarNodo(String nombre, double id)
         {
-            if (seleccion.SelectedImageIndex == 0)
+            if (seleccion.SelectedImageIndex != 1)
             {
                 foreach (Recuerdo d in lista_directorios)
                 {
@@ -566,7 +566,7 @@ namespace Recuerdos
         private void tsmNuevoRecuerdo_Click(object sender, EventArgs e)
         {
             seleccion = tvSuenos.SelectedNode;
-            if (seleccion.SelectedImageIndex == 0)
+            if (seleccion.SelectedImageIndex != 1)
             {
                 crearSueñosRecuerdos csr = new crearSueñosRecuerdos("dir", seleccion, usuario);
                 csr.Show();
@@ -647,7 +647,7 @@ namespace Recuerdos
             {
                 if (e.Label.Length > 0)
                 {
-                    if (seleccion.SelectedImageIndex == 0)
+                    if (seleccion.SelectedImageIndex != 1)
                     {
                         padre = Convert.ToDouble(seleccion.Tag.ToString());
                         con = objCon.conectar();
@@ -706,6 +706,48 @@ namespace Recuerdos
             txtSueño.Redo();
         }
 
+        //Cambio de icono de carpeta  en caso de que sea de trabajo 
+        private void trabajoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cambiarIcono(4);
+        }
+
+        //Cambio de icono de carpeta  en caso de que sea de estudio
+        private void estudioToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            cambiarIcono(2);
+        }
+
+        //Cambio de icono de carpeta  en caso de que sea de algo personal
+        private void personalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cambiarIcono(3);
+        }
+
+        //Cambio de icono de carpeta  en caso de que quiera un folder o carpeta
+        private void capetaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cambiarIcono(0);
+        }
+
+        void cambiarIcono(int index)
+        {
+            if (seleccion.SelectedImageIndex != 1)
+            {
+                con = objCon.conectar();
+                int num = objCon.operar("update recuerdo set tipo="+index+" where nombre='" + seleccion.Text + "' and id_usuario=" + usuario + " and id_padre=" + seleccion.Tag.ToString() + "", con);
+                objCon.cerrar(con);
+                if (num > 0)
+                {
+                    seleccion.ImageIndex = index;
+                    seleccion.SelectedImageIndex = index;
+                }
+                else
+                {
+                    MessageBox.Show("Lo sentimos hubo un error al cambiar el tipo, lo arreglaremos lo mas pronto posible (;´༎ຶД༎ຶ`)");
+                }
+            }
+        }
         //crea un nuevo recuerdo raiz
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {

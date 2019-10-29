@@ -79,7 +79,6 @@ namespace Recuerdos
                 if (consulta.Read())
                 {
                     MessageBox.Show("Lo sentimos ya existe un sueño con este nombre. （⊙ｏ⊙）");
-                    objCon.cerrar(con);
                 }
                 else
                 {
@@ -99,10 +98,11 @@ namespace Recuerdos
                     objr.Focus();
                     this.Close();
                 }
+                objCon.cerrar(con);
             }
             else
             {
-                MessageBox.Show("Porfavor ingresa un nombre, no se admite vacio como nombre  ⊙﹏⊙∥");
+                MessageBox.Show("Por favor ingresa un nombre, no se admite vacio como nombre  ⊙﹏⊙∥");
             }
         }
 
@@ -116,14 +116,13 @@ namespace Recuerdos
                 if (consulta.Read())
                 {
                     padre = Convert.ToInt32(consulta["id"].ToString());
-                    objCon.cerrar(con);
                 }
+                objCon.cerrar(con);
                 con = objCon.conectar();
                 consulta = objCon.consulta("select * from recuerdo where id_padre=" + padre + " and nombre='" + txtNuevoNombre.Text + "' and id_usuario=" + usuario + "", con);
                 if (consulta.Read())
                 {
                     MessageBox.Show("Lo sentimos ya existe una recuerdo con este nombre. （⊙ｏ⊙）");
-                    objCon.cerrar(con);
                 }
                 else
                 {
@@ -142,6 +141,7 @@ namespace Recuerdos
                     objr.Focus();
                     this.Close();
                 }
+                objCon.cerrar(con);
             }
             else
             {

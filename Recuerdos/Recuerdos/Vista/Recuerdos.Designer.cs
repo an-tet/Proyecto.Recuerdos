@@ -34,13 +34,14 @@
             this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmNuevoRecuerdo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmNuevoSueño = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmOcultarRecuerdos = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCambiarNombre = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoヾーノToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.capetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trabajoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estudioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.personalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmOcultarRecuerdos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCambiarNombre = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.imgArchivos = new System.Windows.Forms.ImageList(this.components);
             this.mainSlipContainer = new System.Windows.Forms.SplitContainer();
             this.txtSueño = new System.Windows.Forms.RichTextBox();
@@ -62,10 +63,7 @@
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.guardarcomoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.imprimirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vistapreviadeimpresiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,7 +86,6 @@
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.capetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsTreeView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).BeginInit();
             this.mainSlipContainer.Panel1.SuspendLayout();
@@ -126,10 +123,10 @@
             this.cmsTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmNuevoRecuerdo,
             this.tsmNuevoSueño,
+            this.tipoヾーノToolStripMenuItem,
             this.tsmOcultarRecuerdos,
             this.tsmCambiarNombre,
-            this.tsmEliminar,
-            this.tipoヾーノToolStripMenuItem});
+            this.tsmEliminar});
             this.cmsTreeView.Name = "cmsTreeView";
             this.cmsTreeView.Size = new System.Drawing.Size(261, 148);
             // 
@@ -146,6 +143,49 @@
             this.tsmNuevoSueño.Size = new System.Drawing.Size(260, 24);
             this.tsmNuevoSueño.Text = "Nueva sueño   ✪ ω ✪";
             this.tsmNuevoSueño.Click += new System.EventHandler(this.nuevaCarpetaToolStripMenuItem_Click);
+            // 
+            // tipoヾーノToolStripMenuItem
+            // 
+            this.tipoヾーノToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.capetaToolStripMenuItem,
+            this.trabajoToolStripMenuItem,
+            this.estudioToolStripMenuItem1,
+            this.personalToolStripMenuItem});
+            this.tipoヾーノToolStripMenuItem.Name = "tipoヾーノToolStripMenuItem";
+            this.tipoヾーノToolStripMenuItem.Size = new System.Drawing.Size(260, 24);
+            this.tipoヾーノToolStripMenuItem.Text = "Tipo ヾ(＠⌒ー⌒＠)ノ";
+            // 
+            // capetaToolStripMenuItem
+            // 
+            this.capetaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("capetaToolStripMenuItem.Image")));
+            this.capetaToolStripMenuItem.Name = "capetaToolStripMenuItem";
+            this.capetaToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.capetaToolStripMenuItem.Text = "Capeta";
+            this.capetaToolStripMenuItem.Click += new System.EventHandler(this.capetaToolStripMenuItem_Click);
+            // 
+            // trabajoToolStripMenuItem
+            // 
+            this.trabajoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("trabajoToolStripMenuItem.Image")));
+            this.trabajoToolStripMenuItem.Name = "trabajoToolStripMenuItem";
+            this.trabajoToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.trabajoToolStripMenuItem.Text = "Trabajo";
+            this.trabajoToolStripMenuItem.Click += new System.EventHandler(this.trabajoToolStripMenuItem_Click);
+            // 
+            // estudioToolStripMenuItem1
+            // 
+            this.estudioToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("estudioToolStripMenuItem1.Image")));
+            this.estudioToolStripMenuItem1.Name = "estudioToolStripMenuItem1";
+            this.estudioToolStripMenuItem1.Size = new System.Drawing.Size(139, 26);
+            this.estudioToolStripMenuItem1.Text = "Estudio";
+            this.estudioToolStripMenuItem1.Click += new System.EventHandler(this.estudioToolStripMenuItem1_Click);
+            // 
+            // personalToolStripMenuItem
+            // 
+            this.personalToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("personalToolStripMenuItem.Image")));
+            this.personalToolStripMenuItem.Name = "personalToolStripMenuItem";
+            this.personalToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.personalToolStripMenuItem.Text = "Personal";
+            this.personalToolStripMenuItem.Click += new System.EventHandler(this.personalToolStripMenuItem_Click);
             // 
             // tsmOcultarRecuerdos
             // 
@@ -167,41 +207,6 @@
             this.tsmEliminar.Size = new System.Drawing.Size(260, 24);
             this.tsmEliminar.Text = "Eliminar   X﹏X";
             this.tsmEliminar.Click += new System.EventHandler(this.eliminarcToolStripMenuItem_Click);
-            // 
-            // tipoヾーノToolStripMenuItem
-            // 
-            this.tipoヾーノToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.capetaToolStripMenuItem,
-            this.trabajoToolStripMenuItem,
-            this.estudioToolStripMenuItem1,
-            this.personalToolStripMenuItem});
-            this.tipoヾーノToolStripMenuItem.Name = "tipoヾーノToolStripMenuItem";
-            this.tipoヾーノToolStripMenuItem.Size = new System.Drawing.Size(260, 24);
-            this.tipoヾーノToolStripMenuItem.Text = "Tipo ヾ(＠⌒ー⌒＠)ノ";
-            // 
-            // trabajoToolStripMenuItem
-            // 
-            this.trabajoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("trabajoToolStripMenuItem.Image")));
-            this.trabajoToolStripMenuItem.Name = "trabajoToolStripMenuItem";
-            this.trabajoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.trabajoToolStripMenuItem.Text = "Trabajo";
-            this.trabajoToolStripMenuItem.Click += new System.EventHandler(this.trabajoToolStripMenuItem_Click);
-            // 
-            // estudioToolStripMenuItem1
-            // 
-            this.estudioToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("estudioToolStripMenuItem1.Image")));
-            this.estudioToolStripMenuItem1.Name = "estudioToolStripMenuItem1";
-            this.estudioToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
-            this.estudioToolStripMenuItem1.Text = "Estudio";
-            this.estudioToolStripMenuItem1.Click += new System.EventHandler(this.estudioToolStripMenuItem1_Click);
-            // 
-            // personalToolStripMenuItem
-            // 
-            this.personalToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("personalToolStripMenuItem.Image")));
-            this.personalToolStripMenuItem.Name = "personalToolStripMenuItem";
-            this.personalToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.personalToolStripMenuItem.Text = "Personal";
-            this.personalToolStripMenuItem.Click += new System.EventHandler(this.personalToolStripMenuItem_Click);
             // 
             // imgArchivos
             // 
@@ -396,10 +401,7 @@
             this.nuevoToolStripMenuItem,
             this.toolStripSeparator,
             this.guardarToolStripMenuItem,
-            this.guardarcomoToolStripMenuItem,
             this.toolStripSeparator1,
-            this.imprimirToolStripMenuItem,
-            this.vistapreviadeimpresiónToolStripMenuItem,
             this.toolStripSeparator2,
             this.cerrarSesionToolStripMenuItem,
             this.salirToolStripMenuItem});
@@ -413,14 +415,14 @@
             this.nuevoToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             this.nuevoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(282, 26);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
             this.nuevoToolStripMenuItem.Text = "&Nuevo recuerdo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(279, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(267, 6);
             // 
             // guardarToolStripMenuItem
             // 
@@ -429,57 +431,31 @@
             this.guardarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
             this.guardarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(282, 26);
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
             this.guardarToolStripMenuItem.Text = "&Guardar";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
-            // 
-            // guardarcomoToolStripMenuItem
-            // 
-            this.guardarcomoToolStripMenuItem.Enabled = false;
-            this.guardarcomoToolStripMenuItem.Name = "guardarcomoToolStripMenuItem";
-            this.guardarcomoToolStripMenuItem.Size = new System.Drawing.Size(282, 26);
-            this.guardarcomoToolStripMenuItem.Text = "G&uardar como";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(279, 6);
-            // 
-            // imprimirToolStripMenuItem
-            // 
-            this.imprimirToolStripMenuItem.Enabled = false;
-            this.imprimirToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("imprimirToolStripMenuItem.Image")));
-            this.imprimirToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.imprimirToolStripMenuItem.Name = "imprimirToolStripMenuItem";
-            this.imprimirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.imprimirToolStripMenuItem.Size = new System.Drawing.Size(282, 26);
-            this.imprimirToolStripMenuItem.Text = "&Imprimir";
-            // 
-            // vistapreviadeimpresiónToolStripMenuItem
-            // 
-            this.vistapreviadeimpresiónToolStripMenuItem.Enabled = false;
-            this.vistapreviadeimpresiónToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("vistapreviadeimpresiónToolStripMenuItem.Image")));
-            this.vistapreviadeimpresiónToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.vistapreviadeimpresiónToolStripMenuItem.Name = "vistapreviadeimpresiónToolStripMenuItem";
-            this.vistapreviadeimpresiónToolStripMenuItem.Size = new System.Drawing.Size(282, 26);
-            this.vistapreviadeimpresiónToolStripMenuItem.Text = "&Vista previa de impresión";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(279, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(267, 6);
             // 
             // cerrarSesionToolStripMenuItem
             // 
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(282, 26);
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(282, 26);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(270, 26);
             this.salirToolStripMenuItem.Text = "&Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -502,7 +478,7 @@
             // 
             this.deshacerToolStripMenuItem.Name = "deshacerToolStripMenuItem";
             this.deshacerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.deshacerToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.deshacerToolStripMenuItem.Size = new System.Drawing.Size(275, 26);
             this.deshacerToolStripMenuItem.Text = "&Deshacer";
             this.deshacerToolStripMenuItem.Click += new System.EventHandler(this.deshacerToolStripMenuItem_Click);
             // 
@@ -510,14 +486,14 @@
             // 
             this.rehacerToolStripMenuItem.Name = "rehacerToolStripMenuItem";
             this.rehacerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.rehacerToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.rehacerToolStripMenuItem.Size = new System.Drawing.Size(275, 26);
             this.rehacerToolStripMenuItem.Text = "&Rehacer";
             this.rehacerToolStripMenuItem.Click += new System.EventHandler(this.rehacerToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(213, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(272, 6);
             // 
             // cortarToolStripMenuItem
             // 
@@ -525,7 +501,7 @@
             this.cortarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cortarToolStripMenuItem.Name = "cortarToolStripMenuItem";
             this.cortarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cortarToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.cortarToolStripMenuItem.Size = new System.Drawing.Size(275, 26);
             this.cortarToolStripMenuItem.Text = "Cor&tar";
             // 
             // copiarToolStripMenuItem
@@ -534,7 +510,7 @@
             this.copiarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copiarToolStripMenuItem.Name = "copiarToolStripMenuItem";
             this.copiarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copiarToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.copiarToolStripMenuItem.Size = new System.Drawing.Size(275, 26);
             this.copiarToolStripMenuItem.Text = "&Copiar";
             // 
             // pegarToolStripMenuItem
@@ -543,19 +519,21 @@
             this.pegarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pegarToolStripMenuItem.Name = "pegarToolStripMenuItem";
             this.pegarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pegarToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.pegarToolStripMenuItem.Size = new System.Drawing.Size(275, 26);
             this.pegarToolStripMenuItem.Text = "&Pegar";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(213, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(272, 6);
             // 
             // seleccionartodoToolStripMenuItem
             // 
             this.seleccionartodoToolStripMenuItem.Name = "seleccionartodoToolStripMenuItem";
-            this.seleccionartodoToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.seleccionartodoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.seleccionartodoToolStripMenuItem.Size = new System.Drawing.Size(275, 26);
             this.seleccionartodoToolStripMenuItem.Text = "&Seleccionar todo";
+            this.seleccionartodoToolStripMenuItem.Click += new System.EventHandler(this.seleccionartodoToolStripMenuItem_Click);
             // 
             // herramientasToolStripMenuItem
             // 
@@ -628,14 +606,6 @@
             this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.acercadeToolStripMenuItem.Text = "&Acerca de...";
             // 
-            // capetaToolStripMenuItem
-            // 
-            this.capetaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("capetaToolStripMenuItem.Image")));
-            this.capetaToolStripMenuItem.Name = "capetaToolStripMenuItem";
-            this.capetaToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.capetaToolStripMenuItem.Text = "Capeta";
-            this.capetaToolStripMenuItem.Click += new System.EventHandler(this.capetaToolStripMenuItem_Click);
-            // 
             // pnPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -678,10 +648,7 @@
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem guardarcomoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem imprimirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem vistapreviadeimpresiónToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;

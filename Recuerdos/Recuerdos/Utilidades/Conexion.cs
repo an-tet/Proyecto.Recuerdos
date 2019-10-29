@@ -33,7 +33,6 @@ namespace Recuerdos.Utilidades
             }
             catch (Exception ex)
             {
-                conectar.Close();
                 MessageBox.Show("Fallo la conexión " + ex.ToString());
                 return null;
             }
@@ -50,7 +49,6 @@ namespace Recuerdos.Utilidades
             }
             catch (Exception ex)
             {
-                conector.Close();
                 MessageBox.Show("Fallo la consulta " + ex.ToString());
                 return null;
             }
@@ -77,7 +75,6 @@ namespace Recuerdos.Utilidades
             }
             catch (Exception ex)
             {
-                conector.Close();
                 MessageBox.Show("Fallo la consulta " + ex.ToString());
                 return null;
             }
@@ -105,7 +102,6 @@ namespace Recuerdos.Utilidades
             }
             catch (Exception ex)
             {
-                conector.Close();
                 MessageBox.Show("Fallo la consulta " + ex.ToString());
                 return null;
             }
@@ -123,8 +119,7 @@ namespace Recuerdos.Utilidades
             }
             catch (SqlException e)
             {
-                conector.Close();
-                MessageBox.Show("Fallo la consulta" + e.ToString());
+                //MessageBox.Show("Fallo la operacion" + e.ToString());
                 return num;
             }
         }

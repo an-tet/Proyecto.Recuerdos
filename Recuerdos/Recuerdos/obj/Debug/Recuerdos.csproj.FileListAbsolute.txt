@@ -10,3 +10,4 @@ C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.exe
 C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.pdb
 C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.csprojAssemblyReference.cache
 C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.Vista.Ingreso.resources
+C:\Users\cgara\source\repos\Recuerdos\Recuerdos\obj\Debug\Recuerdos.Vista.Registro.resources

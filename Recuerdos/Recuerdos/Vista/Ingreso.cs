@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Recuerdos.Utilidades;
-using Recuerdos.Vista;
 
 namespace Recuerdos.Vista
 {
@@ -83,6 +82,13 @@ namespace Recuerdos.Vista
         private void Ingreso_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        //Boton que abre ventana de registro de usuario
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            Registro objR = new Registro();
+            objR.Show();
         }
     }
 }

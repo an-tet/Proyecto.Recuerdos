@@ -44,6 +44,13 @@
             this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.imgArchivos = new System.Windows.Forms.ImageList(this.components);
             this.mainSlipContainer = new System.Windows.Forms.SplitContainer();
+            this.cmbCentrar = new System.Windows.Forms.Button();
+            this.imgAlineacion = new System.Windows.Forms.ImageList(this.components);
+            this.btnIzquierda = new System.Windows.Forms.Button();
+            this.btnDerecha = new System.Windows.Forms.Button();
+            this.btnJustificar = new System.Windows.Forms.Button();
+            this.cmbColor = new System.Windows.Forms.ComboBox();
+            this.cmbFuentes = new System.Windows.Forms.ComboBox();
             this.txtSueño = new System.Windows.Forms.RichTextBox();
             this.csmTextBox = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmCopiar = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +61,7 @@
             this.tsmCerrarSueño = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeshacer = new System.Windows.Forms.ToolStripMenuItem();
             this.pbWrapper = new System.Windows.Forms.PictureBox();
+            this.msPersonalizar = new System.Windows.Forms.MenuStrip();
             this.ofdNota = new System.Windows.Forms.OpenFileDialog();
             this.sfdNota = new System.Windows.Forms.SaveFileDialog();
             this.pnMenu = new System.Windows.Forms.Panel();
@@ -78,6 +86,7 @@
             this.seleccionartodoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personalizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fuenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ocultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +95,8 @@
             this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imgEmogis = new System.Windows.Forms.ImageList(this.components);
+            this.cmbTamano = new System.Windows.Forms.ComboBox();
             this.cmsTreeView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).BeginInit();
             this.mainSlipContainer.Panel1.SuspendLayout();
@@ -235,8 +246,16 @@
             // mainSlipContainer.Panel2
             // 
             this.mainSlipContainer.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.mainSlipContainer.Panel2.Controls.Add(this.cmbTamano);
+            this.mainSlipContainer.Panel2.Controls.Add(this.cmbCentrar);
+            this.mainSlipContainer.Panel2.Controls.Add(this.btnIzquierda);
+            this.mainSlipContainer.Panel2.Controls.Add(this.btnDerecha);
+            this.mainSlipContainer.Panel2.Controls.Add(this.btnJustificar);
+            this.mainSlipContainer.Panel2.Controls.Add(this.cmbColor);
+            this.mainSlipContainer.Panel2.Controls.Add(this.cmbFuentes);
             this.mainSlipContainer.Panel2.Controls.Add(this.txtSueño);
             this.mainSlipContainer.Panel2.Controls.Add(this.pbWrapper);
+            this.mainSlipContainer.Panel2.Controls.Add(this.msPersonalizar);
             this.mainSlipContainer.Panel2MinSize = 100;
             this.mainSlipContainer.Size = new System.Drawing.Size(1171, 582);
             this.mainSlipContainer.SplitterDistance = 265;
@@ -244,16 +263,95 @@
             this.mainSlipContainer.TabIndex = 1;
             this.mainSlipContainer.MouseHover += new System.EventHandler(this.mainSlipContainer_MouseHover);
             // 
+            // cmbCentrar
+            // 
+            this.cmbCentrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbCentrar.ImageIndex = 3;
+            this.cmbCentrar.ImageList = this.imgAlineacion;
+            this.cmbCentrar.Location = new System.Drawing.Point(452, 0);
+            this.cmbCentrar.Name = "cmbCentrar";
+            this.cmbCentrar.Size = new System.Drawing.Size(39, 28);
+            this.cmbCentrar.TabIndex = 13;
+            this.cmbCentrar.UseVisualStyleBackColor = true;
+            this.cmbCentrar.Click += new System.EventHandler(this.cmbCentrar_Click);
+            // 
+            // imgAlineacion
+            // 
+            this.imgAlineacion.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgAlineacion.ImageStream")));
+            this.imgAlineacion.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgAlineacion.Images.SetKeyName(0, "alinear-a-la-derecha.png");
+            this.imgAlineacion.Images.SetKeyName(1, "alinear-a-la-izquierda.png");
+            this.imgAlineacion.Images.SetKeyName(2, "alinear-justificar.png");
+            this.imgAlineacion.Images.SetKeyName(3, "centro-de-alineacion-de-texto.png");
+            // 
+            // btnIzquierda
+            // 
+            this.btnIzquierda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzquierda.ImageIndex = 1;
+            this.btnIzquierda.ImageList = this.imgAlineacion;
+            this.btnIzquierda.Location = new System.Drawing.Point(497, 0);
+            this.btnIzquierda.Name = "btnIzquierda";
+            this.btnIzquierda.Size = new System.Drawing.Size(39, 28);
+            this.btnIzquierda.TabIndex = 12;
+            this.btnIzquierda.UseVisualStyleBackColor = true;
+            this.btnIzquierda.Click += new System.EventHandler(this.btnIzquierda_Click);
+            // 
+            // btnDerecha
+            // 
+            this.btnDerecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDerecha.ImageIndex = 0;
+            this.btnDerecha.ImageList = this.imgAlineacion;
+            this.btnDerecha.Location = new System.Drawing.Point(407, 0);
+            this.btnDerecha.Name = "btnDerecha";
+            this.btnDerecha.Size = new System.Drawing.Size(39, 26);
+            this.btnDerecha.TabIndex = 11;
+            this.btnDerecha.UseVisualStyleBackColor = true;
+            this.btnDerecha.Click += new System.EventHandler(this.btnDerecha_Click);
+            // 
+            // btnJustificar
+            // 
+            this.btnJustificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJustificar.ImageIndex = 2;
+            this.btnJustificar.ImageList = this.imgAlineacion;
+            this.btnJustificar.Location = new System.Drawing.Point(366, 0);
+            this.btnJustificar.Name = "btnJustificar";
+            this.btnJustificar.Size = new System.Drawing.Size(35, 28);
+            this.btnJustificar.TabIndex = 10;
+            this.btnJustificar.UseVisualStyleBackColor = true;
+            this.btnJustificar.Click += new System.EventHandler(this.btnJustificar_Click);
+            // 
+            // cmbColor
+            // 
+            this.cmbColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbColor.FormattingEnabled = true;
+            this.cmbColor.ItemHeight = 19;
+            this.cmbColor.Location = new System.Drawing.Point(144, -1);
+            this.cmbColor.Name = "cmbColor";
+            this.cmbColor.Size = new System.Drawing.Size(135, 25);
+            this.cmbColor.TabIndex = 9;
+            this.cmbColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbColor_DrawItem);
+            // 
+            // cmbFuentes
+            // 
+            this.cmbFuentes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbFuentes.FormattingEnabled = true;
+            this.cmbFuentes.ItemHeight = 19;
+            this.cmbFuentes.Location = new System.Drawing.Point(0, 0);
+            this.cmbFuentes.Name = "cmbFuentes";
+            this.cmbFuentes.Size = new System.Drawing.Size(138, 25);
+            this.cmbFuentes.TabIndex = 8;
+            this.cmbFuentes.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbFuentes_DrawItem);
+            // 
             // txtSueño
             // 
             this.txtSueño.BackColor = System.Drawing.Color.LightSteelBlue;
             this.txtSueño.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSueño.ContextMenuStrip = this.csmTextBox;
             this.txtSueño.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSueño.Location = new System.Drawing.Point(0, 0);
+            this.txtSueño.Location = new System.Drawing.Point(0, 24);
             this.txtSueño.Name = "txtSueño";
             this.txtSueño.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.txtSueño.Size = new System.Drawing.Size(897, 578);
+            this.txtSueño.Size = new System.Drawing.Size(897, 554);
             this.txtSueño.TabIndex = 6;
             this.txtSueño.Text = "";
             // 
@@ -342,6 +440,15 @@
             this.pbWrapper.TabIndex = 5;
             this.pbWrapper.TabStop = false;
             this.pbWrapper.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // msPersonalizar
+            // 
+            this.msPersonalizar.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.msPersonalizar.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.msPersonalizar.Location = new System.Drawing.Point(0, 0);
+            this.msPersonalizar.Name = "msPersonalizar";
+            this.msPersonalizar.Size = new System.Drawing.Size(897, 24);
+            this.msPersonalizar.TabIndex = 7;
             // 
             // ofdNota
             // 
@@ -530,7 +637,7 @@
             // seleccionartodoToolStripMenuItem
             // 
             this.seleccionartodoToolStripMenuItem.Name = "seleccionartodoToolStripMenuItem";
-            this.seleccionartodoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.seleccionartodoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.seleccionartodoToolStripMenuItem.Size = new System.Drawing.Size(275, 26);
             this.seleccionartodoToolStripMenuItem.Text = "&Seleccionar todo";
             this.seleccionartodoToolStripMenuItem.Click += new System.EventHandler(this.seleccionartodoToolStripMenuItem_Click);
@@ -547,21 +654,29 @@
             // 
             // personalizarToolStripMenuItem
             // 
+            this.personalizarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fuenteToolStripMenuItem});
             this.personalizarToolStripMenuItem.Name = "personalizarToolStripMenuItem";
-            this.personalizarToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
+            this.personalizarToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.personalizarToolStripMenuItem.Text = "&Personalizar";
+            // 
+            // fuenteToolStripMenuItem
+            // 
+            this.fuenteToolStripMenuItem.Name = "fuenteToolStripMenuItem";
+            this.fuenteToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
+            this.fuenteToolStripMenuItem.Text = "Fuente";
+            this.fuenteToolStripMenuItem.Click += new System.EventHandler(this.fuenteToolStripMenuItem_Click);
             // 
             // opcionesToolStripMenuItem
             // 
             this.opcionesToolStripMenuItem.Name = "opcionesToolStripMenuItem";
-            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
+            this.opcionesToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.opcionesToolStripMenuItem.Text = "&Opciones";
             // 
             // ocultarToolStripMenuItem
             // 
             this.ocultarToolStripMenuItem.Name = "ocultarToolStripMenuItem";
-            this.ocultarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.ocultarToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
+            this.ocultarToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.ocultarToolStripMenuItem.Text = "Ocultar/Mostrar";
             this.ocultarToolStripMenuItem.Click += new System.EventHandler(this.ocultarToolStripMenuItem_Click);
             // 
@@ -606,6 +721,37 @@
             this.acercadeToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.acercadeToolStripMenuItem.Text = "&Acerca de...";
             // 
+            // imgEmogis
+            // 
+            this.imgEmogis.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgEmogis.ImageStream")));
+            this.imgEmogis.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgEmogis.Images.SetKeyName(0, "asombrado.png");
+            this.imgEmogis.Images.SetKeyName(1, "enamorado.png");
+            this.imgEmogis.Images.SetKeyName(2, "enfermo.png");
+            this.imgEmogis.Images.SetKeyName(3, "espantado.png");
+            this.imgEmogis.Images.SetKeyName(4, "sonrisa.png");
+            this.imgEmogis.Images.SetKeyName(5, "triste.png");
+            // 
+            // cmbTamano
+            // 
+            this.cmbTamano.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTamano.FormattingEnabled = true;
+            this.cmbTamano.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "14",
+            "16",
+            "18",
+            "20"});
+            this.cmbTamano.Location = new System.Drawing.Point(298, 0);
+            this.cmbTamano.Name = "cmbTamano";
+            this.cmbTamano.Size = new System.Drawing.Size(48, 24);
+            this.cmbTamano.TabIndex = 14;
+            this.cmbTamano.SelectedIndexChanged += new System.EventHandler(this.cmbTamano_SelectedIndexChanged);
+            // 
             // pnPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -616,15 +762,18 @@
             this.Controls.Add(this.mainSlipContainer);
             this.Controls.Add(this.pnMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MainMenuStrip = this.msPersonalizar;
             this.MaximizeBox = false;
             this.Name = "pnPrincipal";
             this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recuerdos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.pnPrincipal_FormClosing);
+            this.Load += new System.EventHandler(this.pnPrincipal_Load);
             this.cmsTreeView.ResumeLayout(false);
             this.mainSlipContainer.Panel1.ResumeLayout(false);
             this.mainSlipContainer.Panel2.ResumeLayout(false);
+            this.mainSlipContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).EndInit();
             this.mainSlipContainer.ResumeLayout(false);
             this.csmTextBox.ResumeLayout(false);
@@ -694,6 +843,17 @@
         private System.Windows.Forms.ToolStripMenuItem estudioToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem personalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem capetaToolStripMenuItem;
+        private System.Windows.Forms.ImageList imgEmogis;
+        private System.Windows.Forms.ToolStripMenuItem fuenteToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cmbFuentes;
+        private System.Windows.Forms.MenuStrip msPersonalizar;
+        private System.Windows.Forms.ComboBox cmbColor;
+        private System.Windows.Forms.Button btnJustificar;
+        private System.Windows.Forms.ImageList imgAlineacion;
+        private System.Windows.Forms.Button cmbCentrar;
+        private System.Windows.Forms.Button btnIzquierda;
+        private System.Windows.Forms.Button btnDerecha;
+        private System.Windows.Forms.ComboBox cmbTamano;
     }
 }
 

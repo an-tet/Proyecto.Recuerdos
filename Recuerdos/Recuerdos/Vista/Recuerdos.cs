@@ -14,6 +14,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Recuerdos.Properties;
+using System.Drawing.Text;
 
 namespace Recuerdos
 {
@@ -42,6 +44,8 @@ namespace Recuerdos
         //booleano para manejar el movimiento del sliptterPanel
         Boolean esconder = true;
 
+        private InstalledFontCollection installedFonts = new InstalledFontCollection();
+        
         //CONSTRUCTOR
         public pnPrincipal(int usuario)
         {
@@ -54,6 +58,12 @@ namespace Recuerdos
             this.Focus();
             this.usuario = usuario;
             InicializarTree();
+            //Carga lo que tiene que ver con los colores de fuente (carga el nombre en el textbox)
+            string[] colores = Enum.GetNames(typeof(System.Drawing.KnownColor));
+            foreach (String item in colores)
+            {
+                cmbColor.Items.Add(Color.FromName(item));
+            }
         }
 
         void cargarListas()
@@ -294,7 +304,7 @@ namespace Recuerdos
                         {
                             if (s.Id_recuerdo == d.Id)
                             {
-                                con = objCon.conectar();                                
+                                con = objCon.conectar();
                                 objCon.operar("delete from sueno where nombre='" + s.Nombre + "' and id_recuerdo=" + s.Id_recuerdo + " and id_usuario=" + s.Id_usuario + "", con);
                                 objCon.cerrar(con);
                             }
@@ -330,7 +340,7 @@ namespace Recuerdos
                     {
                         if (s.Id_recuerdo == d.Id)
                         {
-                            con = objCon.conectar();                            
+                            con = objCon.conectar();
                             objCon.operar("delete from sueno where nombre='" + s.Nombre + "' and id_recuerdo=" + s.Id_recuerdo + " and id_usuario=" + s.Id_usuario + "", con);
                             objCon.cerrar(con);
                         }
@@ -415,7 +425,7 @@ namespace Recuerdos
             {
                 String nota = txtSueño.Text;
                 con = objCon.conectar();
-                objCon.operar("update sueno set contenido='" + nota + "' where nombre='" + nodoAbierto.Text + "' and id_usuario=" + usuario + " and id_recuerdo="+nodoAbierto.Tag+"", con);
+                objCon.operar("update sueno set contenido='" + nota + "' where nombre='" + nodoAbierto.Text + "' and id_usuario=" + usuario + " and id_recuerdo=" + nodoAbierto.Tag + "", con);
                 objCon.cerrar(con);
                 textoCuandoAbre = nota;
                 return true;
@@ -439,6 +449,7 @@ namespace Recuerdos
             {
                 //Clipboard.SetText(txtNota.SelectedText);
                 txtSueño.Copy();
+                
             }
         }
 
@@ -572,7 +583,7 @@ namespace Recuerdos
         {
             int cambio;
             con = objCon.conectar();
-            cambio = objCon.operar("update sueno set pendiente=" + estado + "where nombre='" + nodoAbierto.Text + "' and id_usuario=" + usuario + " and id_recuerdo="+nodoAbierto.Tag+"", con);
+            cambio = objCon.operar("update sueno set pendiente=" + estado + "where nombre='" + nodoAbierto.Text + "' and id_usuario=" + usuario + " and id_recuerdo=" + nodoAbierto.Tag + "", con);
             objCon.cerrar(con);
             if (cambio > 0)
             {
@@ -622,6 +633,10 @@ namespace Recuerdos
         //Boton para cerrar la sesion del gestor de recuerdos
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (txtSueño.Visible==true)
+            {
+                salirDeSueno();
+            }
             Ingreso objIng = new Ingreso(this);
             desHabilitarComponenes();
             objIng.Show();
@@ -662,7 +677,7 @@ namespace Recuerdos
         //seleccion con click izquierdo y derecho el nodo sobre el que este parado el mouse
         private void tvSuenos_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (MouseButtons.Right==e.Button)
+            if (MouseButtons.Right == e.Button)
             {
                 seleccion = tvSuenos.SelectedNode;
                 tvSuenos.SelectedNode = e.Node;
@@ -793,7 +808,145 @@ namespace Recuerdos
             txtSueño.SelectAll();
         }
 
-        //crea un nuevo recuerdo raiz
+        //Herramienta de menu para el cambio de fuente
+        private void fuenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog fd = new FontDialog();
+            if (fd.ShowDialog() != DialogResult.Cancel)
+            {
+                txtSueño.Font = fd.Font;
+                Settings.Default["Fuente"] = txtSueño.Font;
+                Settings.Default.Save();
+            }
+        }
+
+        //Load de la interfaz
+        private void pnPrincipal_Load(object sender, EventArgs e)
+        {
+            //Carga lo que tiene que ver con la fuente
+            txtSueño.Font = (Font)Settings.Default["Fuente"];
+            txtSueño.ForeColor = (Color)Settings.Default["Color"];
+            cmbFuentes.DataSource = installedFonts.Families;
+            cmbFuentes.DisplayMember = "Name";
+            //selecciona la fuente que fue seleccinada
+            int indexFuente= cmbFuentes.FindString(txtSueño.Font.Name);
+            cmbFuentes.SelectedIndex = indexFuente;
+            //Selecciona el color que estaba seleccionado
+            int IndexColor = cmbColor.FindString(txtSueño.ForeColor.Name);
+            cmbColor.SelectedIndex = IndexColor;
+            //seleccionamos el tamaño de la fuente
+            txtSueño.Font = new Font(txtSueño.Font.Name,(Int32)Settings.Default["Tamano"]);
+            int indexTamano=cmbTamano.FindString(Settings.Default["Tamano"].ToString());
+            cmbTamano.SelectedIndex = indexTamano;
+            //Carga la ultima alineacion
+            txtSueño.SelectionAlignment = (HorizontalAlignment)Settings.Default["Alineacion"];
+        }
+
+        //Funcion draw para las fuentas
+        private void cmbFuentes_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            FontFamily family = installedFonts.Families[e.Index];
+            FontStyle style = FontStyle.Regular;
+            if (!family.IsStyleAvailable(style))
+                style = FontStyle.Bold;
+            if (!family.IsStyleAvailable(style))
+                style = FontStyle.Italic;
+            Font fnt = new Font(family,10, style);            
+            Brush brush;
+            if (e.State == DrawItemState.Selected)
+            {
+                brush = new SolidBrush(Color.White);
+            }
+            else
+            {
+                brush = new SolidBrush(cmbFuentes.ForeColor);
+            }
+            e.DrawBackground();
+            e.Graphics.DrawString(family.GetName(0),fnt, brush, e.Bounds.Location);
+            fnt = new Font(family, txtSueño.Font.Size, style);
+            txtSueño.Font = fnt;
+            Settings.Default["Fuente"] = fnt;
+            Settings.Default.Save();
+        }
+
+        //Funcion draw para los colores de fuente
+        private void cmbColor_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            try
+            {
+                if (cmbColor == null) return;
+                if (e.Index < 0) return;
+                if (!(cmbColor.Items[e.Index] is Color)) return;
+                Color color = (Color)cmbColor.Items[e.Index];
+                // Dibujamos el fondo
+                e.DrawBackground();
+                // Creamos los objetos GDI+
+                Brush brush = new SolidBrush(color);
+                Pen forePen = new Pen(e.ForeColor);
+                Brush foreBrush = new SolidBrush(e.ForeColor);
+                // Dibujamos el borde del rectángulo
+                e.Graphics.DrawRectangle(forePen,new Rectangle(e.Bounds.Left + 2, e.Bounds.Top + 2, 19,e.Bounds.Size.Height - 4));
+                // Rellenamos el rectángulo con el Color seleccionado
+                // en la combo
+                e.Graphics.FillRectangle(brush,new Rectangle(e.Bounds.Left + 3, e.Bounds.Top + 3, 18,e.Bounds.Size.Height - 5));
+                // Dibujamos el nombre del color
+                e.Graphics.DrawString(color.Name, cmbColor.Font,foreBrush, e.Bounds.Left + 25, e.Bounds.Top + 2);
+                e.DrawFocusRectangle();
+                txtSueño.ForeColor = color;
+                Settings.Default["Color"] = color;
+                Settings.Default.Save();
+                // Eliminamos objetos GDI+
+                brush.Dispose();
+                forePen.Dispose();
+                foreBrush.Dispose();
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("catch de drawcolor "+e.ToString());
+                throw;
+            }
+        }
+
+        //Funcion para cambiar el tamaño de la fuente con evento de combobox
+        private void cmbTamano_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.Default["Tamano"] = Convert.ToInt32(cmbTamano.SelectedItem.ToString());
+            txtSueño.Font = new Font(txtSueño.Font.Name, (Int32)Settings.Default["Tamano"]);
+            int indexTamano = cmbTamano.FindString(Settings.Default["Tamano"].ToString());
+            cmbTamano.SelectedIndex = indexTamano;
+        }
+
+        //Evento click boton alineacion centrada
+        private void cmbCentrar_Click(object sender, EventArgs e)
+        {
+            alinearTexto(HorizontalAlignment.Center);
+        }
+
+        //Evento clck de boton alineacion a la izquierda
+        private void btnIzquierda_Click(object sender, EventArgs e)
+        {
+            alinearTexto(HorizontalAlignment.Left);
+        }
+        //Evento clck de boton alineacion a la derecha
+        private void btnDerecha_Click(object sender, EventArgs e)
+        {
+            alinearTexto(HorizontalAlignment.Right);
+        }
+
+        //Evento clck de boton alineacion justificada (SIN DESARROLLAR)
+        private void btnJustificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Funcion que elinea el texto segun su parametro de alineacion horizontal
+        void alinearTexto(HorizontalAlignment h)
+        {
+            txtSueño.SelectionAlignment = h;
+            Settings.Default["Alineacion"] = h;
+        }
+
+        //crea un nuevo recuerdo raiz<
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try

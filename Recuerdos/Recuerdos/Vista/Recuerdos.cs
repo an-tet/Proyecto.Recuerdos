@@ -220,6 +220,12 @@ namespace Recuerdos
             txtSueño.Visible = true;
             btnSinAcabar.Visible = true;
             pbWrapper.BackColor = Color.LightSteelBlue;
+            cmbFuentes.Enabled = true;
+            cmbColor.Enabled = true;
+            cmbTamano.Enabled = true;
+            btnDerecha.Enabled = true;
+            btnIzquierda.Enabled = true;
+            btnCentrar.Enabled = true;
         }
 
         //metodo que desabilita componentes en caso de que no halla un sueño abierto
@@ -230,6 +236,12 @@ namespace Recuerdos
             herramientasToolStripMenuItem.Enabled = false;
             txtSueño.Visible = false;
             btnSinAcabar.Visible = false;
+            cmbFuentes.Enabled = false;
+            cmbColor.Enabled = false;
+            cmbTamano.Enabled = false;
+            btnDerecha.Enabled = false;
+            btnIzquierda.Enabled = false;
+            btnCentrar.Enabled = false;
         }
 
         //evento click de icono para esconder y abrir el sliptterPanel

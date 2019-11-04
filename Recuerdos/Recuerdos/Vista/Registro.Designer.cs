@@ -42,6 +42,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblCorreo = new System.Windows.Forms.Label();
             this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.lblConfirmarContracena = new System.Windows.Forms.Label();
+            this.txtConfirmarContracena = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -104,7 +106,7 @@
             // txtNombres
             // 
             this.txtNombres.Location = new System.Drawing.Point(139, 127);
-            this.txtNombres.MaxLength = 15;
+            this.txtNombres.MaxLength = 20;
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(173, 22);
             this.txtNombres.TabIndex = 6;
@@ -122,7 +124,7 @@
             // txtUsuario
             // 
             this.txtUsuario.Location = new System.Drawing.Point(139, 173);
-            this.txtUsuario.MaxLength = 10;
+            this.txtUsuario.MaxLength = 15;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(173, 22);
             this.txtUsuario.TabIndex = 8;
@@ -141,7 +143,7 @@
             // btnRegistrar
             // 
             this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistrar.Location = new System.Drawing.Point(196, 270);
+            this.btnRegistrar.Location = new System.Drawing.Point(196, 298);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(84, 34);
             this.btnRegistrar.TabIndex = 10;
@@ -152,7 +154,7 @@
             // btnCancelar
             // 
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Location = new System.Drawing.Point(356, 270);
+            this.btnCancelar.Location = new System.Drawing.Point(356, 298);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(84, 34);
             this.btnCancelar.TabIndex = 11;
@@ -163,7 +165,7 @@
             // lblCorreo
             // 
             this.lblCorreo.AutoSize = true;
-            this.lblCorreo.Location = new System.Drawing.Point(42, 215);
+            this.lblCorreo.Location = new System.Drawing.Point(42, 252);
             this.lblCorreo.Name = "lblCorreo";
             this.lblCorreo.Size = new System.Drawing.Size(129, 17);
             this.lblCorreo.TabIndex = 12;
@@ -171,19 +173,38 @@
             // 
             // txtCorreo
             // 
-            this.txtCorreo.Location = new System.Drawing.Point(196, 215);
+            this.txtCorreo.Location = new System.Drawing.Point(196, 252);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(415, 22);
             this.txtCorreo.TabIndex = 13;
             this.txtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
+            // 
+            // lblConfirmarContracena
+            // 
+            this.lblConfirmarContracena.AutoSize = true;
+            this.lblConfirmarContracena.Location = new System.Drawing.Point(42, 217);
+            this.lblConfirmarContracena.Name = "lblConfirmarContracena";
+            this.lblConfirmarContracena.Size = new System.Drawing.Size(148, 17);
+            this.lblConfirmarContracena.TabIndex = 14;
+            this.lblConfirmarContracena.Text = "Confirmar contraceña:";
+            // 
+            // txtConfirmarContracena
+            // 
+            this.txtConfirmarContracena.Location = new System.Drawing.Point(200, 214);
+            this.txtConfirmarContracena.Name = "txtConfirmarContracena";
+            this.txtConfirmarContracena.Size = new System.Drawing.Size(173, 22);
+            this.txtConfirmarContracena.TabIndex = 15;
+            this.txtConfirmarContracena.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConfirmarContracena_KeyPress);
             // 
             // Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(660, 330);
+            this.ClientSize = new System.Drawing.Size(660, 344);
             this.ControlBox = false;
+            this.Controls.Add(this.txtConfirmarContracena);
+            this.Controls.Add(this.lblConfirmarContracena);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.lblCorreo);
             this.Controls.Add(this.btnCancelar);
@@ -223,5 +244,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblCorreo;
         private System.Windows.Forms.TextBox txtCorreo;
+        private System.Windows.Forms.Label lblConfirmarContracena;
+        private System.Windows.Forms.TextBox txtConfirmarContracena;
     }
 }

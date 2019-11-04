@@ -14,6 +14,7 @@ namespace Recuerdos.Vista
 {
     public partial class Ingreso : Form
     {
+        Validaciones objV = new Validaciones();
         Conexion objCon = new Conexion();
         SqlConnection con;
         SqlDataReader consulta;
@@ -89,6 +90,16 @@ namespace Recuerdos.Vista
         {
             Registro objR = new Registro();
             objR.Show();
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            objV.validarLetrasNumeros(sender, e);
+        }
+
+        private void txtClave_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            objV.validarLetrasNumeros(sender, e);
         }
     }
 }

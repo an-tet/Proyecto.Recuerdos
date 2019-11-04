@@ -10,7 +10,9 @@ namespace Recuerdos.Utilidades
 {
     public class Validaciones
     {
-        
+
+        //Validaciones a considerar si hacer con caracteres de º ª ç Ç
+        //restricciones en c#
         public  void validarNumero(object sender, KeyPressEventArgs e)
         {
             if (char.IsNumber(e.KeyChar)&&!char.IsWhiteSpace(e.KeyChar) && e.KeyChar != '\b')
@@ -18,9 +20,9 @@ namespace Recuerdos.Utilidades
                 e.Handled = true;
             }
         }
-        public void validarLetra(object sender, KeyPressEventArgs e)
+        public void validarLetraEspacio(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != '\b')
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != '\b' || (e.KeyChar == 'º' || e.KeyChar == 'ª' || e.KeyChar == 'ç' || e.KeyChar == 'Ç'))
             {
                 e.Handled = true;
             }
@@ -41,12 +43,49 @@ namespace Recuerdos.Utilidades
             //IsWhiteSpace permite espacio en blanco.
             //'\b' permite poder eliminar caracteres con BackSpace
 
-            if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && char.IsWhiteSpace(e.KeyChar) && e.KeyChar != '\b')
+            if (!char.IsLetter(e.KeyChar) && !char.IsNumber(e.KeyChar) && e.KeyChar != '\b' || (e.KeyChar == 'º' || e.KeyChar == 'ª' || e.KeyChar == 'ç' || e.KeyChar == 'Ç'))
             {
                 e.Handled = true;
             }
         }
 
+        public void validarLetrasNumerosGuiones(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar)&&!char.IsDigit(e.KeyChar)&&e.KeyChar!='-'&&e.KeyChar != '_' && e.KeyChar != '\b'&& e.KeyChar != '@'&& e.KeyChar != '.' || (e.KeyChar == 'º' || e.KeyChar == 'ª' || e.KeyChar == 'ç' || e.KeyChar == 'Ç'))
+            {
+                e.Handled = true;
+            }
+        }
+        //Valida que el dato tenga el formato de correo.
+        public Boolean validaCorreoElectronico(String correo)
+        {
+            try
+            {
+                String expresion;
+                expresion = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+                if (Regex.IsMatch(correo, expresion))
+                {
+                    if (Regex.Replace(correo, expresion, String.Empty).Length == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Validaciones en REGEX
         public Boolean formato_Numero(String dato)
         {
             string regex = @"^\d+$";
@@ -75,25 +114,11 @@ namespace Recuerdos.Utilidades
                 return false;
             }
         }
-        //Valida que el dato tenga el formato de correo.
-        public Boolean formato_Correo(String dato)
-        {
-            string regex = @"^((([\w]+\.[\w]+)+)|([\w]+))@(([\w]+\.)+)([A-Za-z]{1,3})$";
-            // Validación
-            if (Regex.IsMatch(dato, regex))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         //Valida el formato de una contraceña con un rango de caracteres
         public Boolean formato_Contracena(String dato)
         {
-            string regex = @"^\w{6,8}$";
+            string regex = @"^[a-zA-Z0-9_-]{3,20}$";
             // Validación
             if (Regex.IsMatch(dato, regex))
             {
@@ -108,7 +133,7 @@ namespace Recuerdos.Utilidades
         //Valida el formato de una contraceña con un rango de caracteres
         public Boolean formato_usuario(String dato)
         {
-            string regex = @"/^[a-z0-9_-]{3,10}$/";
+            string regex = @"^[a-zA-Z0-9_-]{3,15}$";
             // Validación
             if (Regex.IsMatch(dato, regex))
             {
@@ -150,7 +175,7 @@ namespace Recuerdos.Utilidades
         //Valida ingreso sea alfabetico y permite espacios
         public Boolean formato_Alfabetico_Espacios(String dato)
         {
-            string regex = @"[A-Za-z]$";
+            string regex = @"^[\w\.\-\s]+$";
             // Validación
             if (Regex.IsMatch(dato, regex))
             {

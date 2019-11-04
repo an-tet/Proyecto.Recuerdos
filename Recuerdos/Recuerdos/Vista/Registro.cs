@@ -27,19 +27,19 @@ namespace Recuerdos.Vista
         //Limitacion de escritura para el usuario en el campo de nombres
         private void txtNombres_KeyPress(object sender, KeyPressEventArgs e)
         {
-            objV.validarLetrasNumerosEspacio(sender, e);
+            objV.validarLetraEspacio(sender, e);
         }
 
         //Limitacion de escritura para el usuario en el campo de apellidos
         private void txtApellidos_KeyPress(object sender, KeyPressEventArgs e)
         {
-            objV.validarLetrasNumerosEspacio(sender, e);
+            objV.validarLetraEspacio(sender, e);
         }
 
         //Limitacion de escritura para el usuario en el campo de usuario
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            objV.validarLetrasNumerosEspacio(sender, e);
+            objV.validarLetrasNumeros(sender, e);
         }
 
         //Limitacion de escritura para el usuario en el campo de contracena
@@ -57,37 +57,53 @@ namespace Recuerdos.Vista
         //funcionalidad de todo el proceso de registro por medio de boton
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (txtNombres.Text != "" || txtApellidos.Text != "" || txtUsuario.Text != "" || txtContracena.Text != "" || txtCorreo.Text != "")
+            if (txtNombres.Text != "" && txtApellidos.Text != "" && txtUsuario.Text != "" && txtContracena.Text != "" && txtCorreo.Text != "")
             {
-                con=objCon.conectar();
-                consulta=objCon.consulta("select * from usuario where usuario='"+txtUsuario.Text+ "' or correo_electronico='"+txtCorreo.Text+"'", con);
-                if (consulta.Read())
+                if (objV.formato_Alfabetico_Espacios(txtNombres.Text) && objV.formato_Alfabetico_Espacios(txtApellidos.Text) && objV.formato_usuario(txtUsuario.Text) && objV.formato_Contracena(txtContracena.Text) && objV.formato_Contracena(txtConfirmarContracena.Text) && objV.validaCorreoElectronico(txtCorreo.Text))
                 {
-                    if (consulta["usuario"].ToString()==txtUsuario.Text)
+                    if (txtContracena==txtConfirmarContracena)
                     {
-                        MessageBox.Show("Lo sentimos ya existe un usuario con este nombre, intenta con otro.");
+                        con = objCon.conectar();
+                        consulta = objCon.consulta("select * from usuario where usuario='" + txtUsuario.Text + "' or correo_electronico='" + txtCorreo.Text + "'", con);
+                        if (consulta.Read())
+                        {
+                            if (consulta["usuario"].ToString() == txtUsuario.Text)
+                            {
+                                MessageBox.Show("Lo sentimos ya existe un usuario con este nombre, intenta con otro.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lo sentimos ya existe un usuario con este correo electronico.");
+                            }
+                            objCon.cerrar(con);
+                        }
+                        else
+                        {
+                            objCon.cerrar(con);
+                            con = objCon.conectar();
+                            int num = objCon.operar("Insert into usuario values('" + txtUsuario.Text + "','" + txtContracena.Text + "','" + txtNombres.Text + "','" + txtApellidos.Text + "','" + txtCorreo.Text + "');", con);
+                            objCon.cerrar(con);
+                            if (num > 0)
+                            {
+                                MessageBox.Show("Registro exitoso, ¡FELICIDADES! ☜(ﾟヮﾟ☜)");
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lo sentimos, algo a salido mal intentalo mas tarde (┬┬﹏┬┬)");
+                            }
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Lo sentimos ya existe un usuario con este correo electronico.");
+                        txtConfirmarContracena.Text = "";
+                        txtContracena.Text = "";
+                        MessageBox.Show("La cotraceña no coincide");
                     }
-                    objCon.cerrar(con);
                 }
                 else
                 {
-                    objCon.cerrar(con);
-                    con = objCon.conectar();
-                    int num = objCon.operar("Insert into usuario values('" + txtUsuario.Text + "','" + txtContracena.Text + "','" + txtNombres.Text + "','" + txtApellidos.Text + "','" + txtCorreo.Text + "');", con);
-                    objCon.cerrar(con);
-                    if (num > 0)
-                    {
-                        MessageBox.Show("Registro exitoso, ¡FELICIDADES! ☜(ﾟヮﾟ☜)");
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Lo sentimos, algo a salido mal intentalo despues (┬┬﹏┬┬)");
-                    }
+                    MessageBox.Show("no");
                 }
             }
             else
@@ -99,10 +115,21 @@ namespace Recuerdos.Vista
         //Limitacion de escritura para el usuario en el campo de correo electronico
         private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsSymbol(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            objV.validarLetrasNumerosGuiones(sender, e);
+        }
+
+        private void limpiarCampos()
+        {
+            txtNombres.Text = "";
+            txtApellidos.Text = "";
+            txtUsuario.Text = "";
+            txtContracena.Text = "";
+            txtCorreo.Text = "";
+        }
+
+        private void txtConfirmarContracena_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            objV.validarLetrasNumeros(sender, e);
         }
     }
 }

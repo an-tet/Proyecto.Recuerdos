@@ -69,18 +69,22 @@
             // 
             this.txtClave.Location = new System.Drawing.Point(181, 388);
             this.txtClave.Margin = new System.Windows.Forms.Padding(4);
+            this.txtClave.MaxLength = 20;
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '*';
-            this.txtClave.Size = new System.Drawing.Size(180, 22);
+            this.txtClave.Size = new System.Drawing.Size(213, 22);
             this.txtClave.TabIndex = 16;
+            this.txtClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClave_KeyPress);
             // 
             // txtUsuario
             // 
             this.txtUsuario.Location = new System.Drawing.Point(181, 338);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUsuario.MaxLength = 20;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(180, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(213, 22);
             this.txtUsuario.TabIndex = 15;
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             // 
             // btbSalir
             // 

@@ -51,18 +51,18 @@ namespace Recuerdos.Vista
                     }
                     else
                     {
-                        MessageBox.Show("El usuario o contraceña ingresados son incorrectos, verifique los datos ingresados");
+                        MessageBox.Show("El usuario o la contraseña son incorrectos, verifica los datos. (´。＿。｀)");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("El usuario ingresado no existe");
+                    MessageBox.Show("El usuario no existe. o(TヘTo)");
                 }
                 objCon.cerrar(con);
             }
             else
             {
-                MessageBox.Show("Verifique que todo los campos si hallan sido llenados");
+                MessageBox.Show("Verifica que hayas llenado todos los campos.");
             }
         }
 
@@ -100,6 +100,11 @@ namespace Recuerdos.Vista
         private void txtClave_KeyPress(object sender, KeyPressEventArgs e)
         {
             objV.validarLetrasNumeros(sender, e);
+        }
+
+        private void Ingreso_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -49,6 +49,8 @@
     <Compile Include="Modelo\Sueno.cs" />
     <Compile Include="Modelo\Recuerdo.cs" />
     <Compile Include="Modelo\Usuario.cs" />
+    <Compile Include="Utilidades\HotKeyRegister.cs" />
+    <Compile Include="Utilidades\KeyModifiers.cs" />
     <Compile Include="Utilidades\Validaciones.cs" />
     <Compile Include="Vista\crearSueñosRecuerdos.cs">
       <SubType>Form</SubType>

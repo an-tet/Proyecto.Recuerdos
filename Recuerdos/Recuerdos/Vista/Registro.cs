@@ -61,7 +61,7 @@ namespace Recuerdos.Vista
             {
                 if (objV.formato_Alfabetico_Espacios(txtNombres.Text) && objV.formato_Alfabetico_Espacios(txtApellidos.Text) && objV.formato_usuario(txtUsuario.Text) && objV.formato_Contracena(txtContracena.Text) && objV.formato_Contracena(txtConfirmarContracena.Text) && objV.validaCorreoElectronico(txtCorreo.Text))
                 {
-                    if (txtContracena==txtConfirmarContracena)
+                    if (txtContracena == txtConfirmarContracena)
                     {
                         con = objCon.conectar();
                         consulta = objCon.consulta("select * from usuario where usuario='" + txtUsuario.Text + "' or correo_electronico='" + txtCorreo.Text + "'", con);
@@ -69,11 +69,11 @@ namespace Recuerdos.Vista
                         {
                             if (consulta["usuario"].ToString() == txtUsuario.Text)
                             {
-                                MessageBox.Show("Lo sentimos ya existe un usuario con este nombre, intenta con otro.");
+                                MessageBox.Show("Lo sentimos ya existe un usuario con este nombre. (⊙_⊙)？");
                             }
                             else
                             {
-                                MessageBox.Show("Lo sentimos ya existe un usuario con este correo electronico.");
+                                MessageBox.Show("Lo sentimos ya existe un usuario con este correo electrónico. ¯\'(°_o)/¯");
                             }
                             objCon.cerrar(con);
                         }
@@ -90,7 +90,7 @@ namespace Recuerdos.Vista
                             }
                             else
                             {
-                                MessageBox.Show("Lo sentimos, algo a salido mal intentalo mas tarde (┬┬﹏┬┬)");
+                                MessageBox.Show("Lo sentimos, algo a salido mal inténtalo mas tarde (┬┬﹏┬┬)");
                             }
                         }
                     }
@@ -98,17 +98,13 @@ namespace Recuerdos.Vista
                     {
                         txtConfirmarContracena.Text = "";
                         txtContracena.Text = "";
-                        MessageBox.Show("La cotraceña no coincide");
+                        MessageBox.Show("La cotraseña no coincide.");
                     }
-                }
-                else
-                {
-                    MessageBox.Show("no");
                 }
             }
             else
             {
-                MessageBox.Show("Porfavor revisa los datos ingresados, uno de los campos esta vacio.");
+                MessageBox.Show("Verifica que hayas llenado todos los campos.");
             }
         }
 
@@ -125,6 +121,7 @@ namespace Recuerdos.Vista
             txtUsuario.Text = "";
             txtContracena.Text = "";
             txtCorreo.Text = "";
+            
         }
 
         private void txtConfirmarContracena_KeyPress(object sender, KeyPressEventArgs e)

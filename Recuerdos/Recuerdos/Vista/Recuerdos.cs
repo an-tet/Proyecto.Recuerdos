@@ -45,7 +45,12 @@ namespace Recuerdos
         Boolean esconder = true;
 
         private InstalledFontCollection installedFonts = new InstalledFontCollection();
-        
+
+        //Instancias necesarias para el manejo de el evento de minimizar y maximizar
+        HotKeyRegister hotKeyToRegister = null;
+        Keys registerKey = Keys.S;
+        KeyModifiers registerModifiers = KeyModifiers.Control | KeyModifiers.Shift;
+
         //CONSTRUCTOR
         public pnPrincipal(int usuario)
         {
@@ -152,7 +157,7 @@ namespace Recuerdos
                 }
                 else
                 {
-                    MessageBox.Show("Ah ocurrido algun problema, notifiquelo al desarrollador");
+                    MessageBox.Show("Ha ocurrido un problema, notifica al desarrollador. ㄟ( ▔, ▔ )ㄏ");
                 }
             }
             catch (Exception e)
@@ -294,7 +299,7 @@ namespace Recuerdos
             }
             else
             {
-                MessageBox.Show("Lo sentimos un sueño no puede tener sueños dentro :c.");
+                MessageBox.Show("Lo sentimos, un sueño no puede tener sueños dentro. (￣_￣|||)");
             }
         }
 
@@ -394,7 +399,7 @@ namespace Recuerdos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lo sentimos, algo salio mal al abrir este archivo...\n" + ex.ToString());
+                //MessageBox.Show("Lo sentimos, algo salió mal al abrir este archivo...\n" + ex.ToString());
             }
         }
 
@@ -407,8 +412,8 @@ namespace Recuerdos
             consulta = objCon.consulta("select contenido from sueno where nombre ='" + nodoAbierto.Text + "' and id_usuario=" + usuario + "", con);
             while (consulta.Read())
             {
-                txtSueño.Text = consulta["contenido"].ToString();
-                textoCuandoAbre = txtSueño.Text;
+                txtSueño.Rtf = consulta["contenido"].ToString();
+                textoCuandoAbre = txtSueño.Rtf;
             }
             objCon.cerrar(con);
             habilitarComponentes();
@@ -420,12 +425,11 @@ namespace Recuerdos
         {
             if (ActualizarSueño())
             {
-                ActualizarSueño();
-                MessageBox.Show("Se guardo exitosamente");
+                MessageBox.Show("El sueño se guardó exitosamente. \'(￣︶￣*\'))");
             }
             else
             {
-                MessageBox.Show("Ah ocurrido un error, lo atenderemos lo mas pronto posible.");
+                MessageBox.Show("Ha ocurrido un error, lo arreglaremos lo mas pronto posible. o((⊙﹏⊙))o.");
             }
         }
 
@@ -435,7 +439,7 @@ namespace Recuerdos
         {
             if (nodoAbierto != null)
             {
-                String nota = txtSueño.Text;
+                String nota = txtSueño.Rtf;
                 con = objCon.conectar();
                 objCon.operar("update sueno set contenido='" + nota + "' where nombre='" + nodoAbierto.Text + "' and id_usuario=" + usuario + " and id_recuerdo=" + nodoAbierto.Tag + "", con);
                 objCon.cerrar(con);
@@ -461,7 +465,7 @@ namespace Recuerdos
             {
                 //Clipboard.SetText(txtNota.SelectedText);
                 txtSueño.Copy();
-                
+
             }
         }
 
@@ -498,11 +502,12 @@ namespace Recuerdos
                 case "no":
                     break;
                 case "error":
-                    MessageBox.Show("ah ocurrido un problema, lo solucionaremos lo mas rapido posible.");
+                    MessageBox.Show("Ha ocurrido un error, lo arreglaremos lo mas pronto posible. o((⊙﹏⊙))o.");
                     break;
                 case "cancel":
                     break;
                 default:
+
                     desHabilitarComponenes();
                     break;
             }
@@ -511,17 +516,20 @@ namespace Recuerdos
         //Metodo generico para salir de un sueño
         public String salirDeSueno()
         {
-            if (textoCuandoAbre != txtSueño.Text)
+            if (textoCuandoAbre != txtSueño.Rtf)
             {
-                var respuesta = MessageBox.Show("¿Desea guardar los cambios hechos antes de cerrar el sueño?", "", MessageBoxButtons.YesNoCancel);
+                var respuesta = MessageBox.Show("¿Deseas guardar los cambios antes de cerrar el sueño?. (´･ω･`)?", "", MessageBoxButtons.YesNoCancel);
                 if (respuesta == DialogResult.Yes)
                 {
                     if (ActualizarSueño())
                     {
+                        pbWrapper.Visible = false;
+                        txtSueño.Rtf = "";
                         txtSueño.Visible = false;
                         tvSuenos.Focus();
                         nodoAbierto = null;
                         desHabilitarComponenes();
+                        
                         return "si";
                     }
                     else
@@ -531,6 +539,7 @@ namespace Recuerdos
                 }
                 else if (respuesta == DialogResult.No)
                 {
+                    txtSueño.Rtf = "";
                     nodoAbierto = null;
                     tvSuenos.Focus();
                     desHabilitarComponenes();
@@ -549,11 +558,11 @@ namespace Recuerdos
         {
             if (ActualizarSueño())
             {
-                MessageBox.Show("Se guardo exitosamente");
+                MessageBox.Show("¡¡¡Guardado exitosamente!!! ┌(。Д。)┐");
             }
             else
             {
-                MessageBox.Show("Ah ocurrido un error, lo atenderemos lo mas pronto posible.");
+                MessageBox.Show("Ha ocurrido un error, lo arreglaremos lo mas pronto posible. o((⊙﹏⊙))o.");
             }
         }
 
@@ -561,7 +570,7 @@ namespace Recuerdos
         //Limpia todo lo que hay en el sueño
         private void limpiarSueñoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var respuesta = MessageBox.Show("¿Esta seguro que desea limpar el sueño?", "", MessageBoxButtons.OKCancel);
+            var respuesta = MessageBox.Show("¿Seguro que deseas limpar el sueño?. (+_+)?", "", MessageBoxButtons.OKCancel);
             if (DialogResult.OK == respuesta)
             {
                 Clipboard.SetText(txtSueño.Text);
@@ -580,7 +589,7 @@ namespace Recuerdos
         private void btnSinAcabar_Click(object sender, EventArgs e)
         {
 
-            if (nodoAbierto.BackColor != Color.Red)
+            if (nodoAbierto.BackColor != Color.OrangeRed)
             {
                 actualizarPendiente(1);
             }
@@ -601,7 +610,7 @@ namespace Recuerdos
             {
                 if (estado == 1)
                 {
-                    nodoAbierto.BackColor = Color.Red;
+                    nodoAbierto.BackColor = Color.OrangeRed;
                     btnSinAcabar.Text = "Terminado";
                 }
                 else
@@ -623,24 +632,25 @@ namespace Recuerdos
             }
             else
             {
-                MessageBox.Show("Lo sentimos un sueño no puede tener recuerdos :c.");
+                MessageBox.Show("Lo sentimos, un sueño no puede tener recuerdos. (lll￢ω￢)");
             }
         }
+
 
         //SIN TERMINAR (oculta u muestra la ventana de recuerdos con un shortcut (stackoverflow))
         private void ocultarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             if (this.WindowState == FormWindowState.Minimized)
             {
-                this.WindowState = FormWindowState.Maximized;
+                this.WindowState = FormWindowState.Normal;
             }
             else
             {
                 this.WindowState = FormWindowState.Minimized;
-
             }
+            this.Activate();
         }
+           
 
         //Boton para cerrar la sesion del gestor de recuerdos
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -648,6 +658,11 @@ namespace Recuerdos
             if (txtSueño.Visible==true)
             {
                 salirDeSueno();
+            }
+            if (hotKeyToRegister != null)
+            {
+                hotKeyToRegister.Dispose();
+                hotKeyToRegister = null;
             }
             Ingreso objIng = new Ingreso(this);
             desHabilitarComponenes();
@@ -658,9 +673,10 @@ namespace Recuerdos
         //Programacion del boton de salida panel principal
         private void pnPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (textoCuandoAbre != txtSueño.Text)
+            var respuesta= DialogResult.Abort;
+            if (textoCuandoAbre != txtSueño.Rtf)
             {
-                var respuesta = MessageBox.Show("¿Desea guardar los cambios hechos antes de cerrar el sueño?", "", MessageBoxButtons.YesNo);
+                respuesta = MessageBox.Show("¿Deseas guardar los cambios antes de cerrar el sueño? (⊙_⊙)？", "", MessageBoxButtons.YesNo);
                 if (respuesta == DialogResult.Yes)
                 {
                     if (ActualizarSueño())
@@ -677,7 +693,14 @@ namespace Recuerdos
             {
                 Application.Exit();
             }
-
+            if (respuesta == DialogResult.Yes|| respuesta == DialogResult.No)
+            {
+                if (hotKeyToRegister != null)
+                {
+                    hotKeyToRegister.Dispose();
+                    hotKeyToRegister = null;
+                }
+            }
         }
 
         //Programacion del boton de saida menu principal
@@ -809,7 +832,7 @@ namespace Recuerdos
                 }
                 else
                 {
-                    MessageBox.Show("Lo sentimos hubo un error al cambiar el tipo, lo arreglaremos lo mas pronto posible (;´༎ຶД༎ຶ`)");
+                    MessageBox.Show("Lo sentimos, hubo un error al cambiar el tipo, lo arreglaremos lo mas pronto posible (;´༎ຶД༎ຶ`)");
                 }
             }
         }
@@ -835,6 +858,7 @@ namespace Recuerdos
         //Load de la interfaz
         private void pnPrincipal_Load(object sender, EventArgs e)
         {
+            registrarHK();
             //Carga lo que tiene que ver con la fuente
             txtSueño.Font = (Font)Settings.Default["Fuente"];
             txtSueño.ForeColor = (Color)Settings.Default["Color"];
@@ -852,6 +876,27 @@ namespace Recuerdos
             cmbTamano.SelectedIndex = indexTamano;
             //Carga la ultima alineacion
             txtSueño.SelectionAlignment = (HorizontalAlignment)Settings.Default["Alineacion"];
+        }
+
+        void registrarHK()
+        {
+            try
+            {
+                // Register the hotkey.
+                hotKeyToRegister = new HotKeyRegister(this.Handle, 100,
+                    this.registerModifiers, this.registerKey);
+
+                // Register the HotKeyPressed event.
+                hotKeyToRegister.HotKeyPressed += new EventHandler(ocultarToolStripMenuItem_Click);
+            }
+            catch (ArgumentException argumentException)
+            {
+                MessageBox.Show(argumentException.Message);
+            }
+            catch (ApplicationException applicationException)
+            {
+                MessageBox.Show(applicationException.Message);
+            }
         }
 
         //Funcion draw para las fuentas
@@ -904,9 +949,9 @@ namespace Recuerdos
                 // Dibujamos el nombre del color
                 e.Graphics.DrawString(color.Name, cmbColor.Font,foreBrush, e.Bounds.Left + 25, e.Bounds.Top + 2);
                 e.DrawFocusRectangle();
-                txtSueño.ForeColor = color;
-                Settings.Default["Color"] = color;
-                Settings.Default.Save();
+                txtSueño.SelectionColor = color;
+                //Settings.Default["Color"] = color;
+                //Settings.Default.Save();
                 // Eliminamos objetos GDI+
                 brush.Dispose();
                 forePen.Dispose();
@@ -955,7 +1000,18 @@ namespace Recuerdos
         void alinearTexto(HorizontalAlignment h)
         {
             txtSueño.SelectionAlignment = h;
-            Settings.Default["Alineacion"] = h;
+        }
+
+        private void txtSueño_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSueño.Text.Contains(":)"))
+            {
+                int ind = txtSueño.Text.IndexOf(":)");
+                txtSueño.Select(ind,2);
+                Clipboard.SetImage((Image)imgEmogis.Images[0]);
+                txtSueño.Paste();
+               // MessageBox.Show(txtSueño.Rtf);
+            }
         }
 
         //crea un nuevo recuerdo raiz<
@@ -979,7 +1035,7 @@ namespace Recuerdos
                 objCon.operar("delete from recuerdo where nombre ='Nuevo recuerdo' and id_usuario=" + usuario + "", con);
                 objCon.cerrar(con);
                 tvSuenos.Nodes.Remove(seleccion);
-                MessageBox.Show("Lo sentimos ah ocurrido un error al crear el recuerdo intentelo mas tarde.");
+                MessageBox.Show("Lo sentimos, ha ocurrido un error al crear el recuerdo. Inténtalo mas tarde.");
                 //MessageBox.Show(ex.ToString());
             }
         }

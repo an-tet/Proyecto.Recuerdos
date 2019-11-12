@@ -44,14 +44,15 @@
             this.tsmEliminar = new System.Windows.Forms.ToolStripMenuItem();
             this.imgArchivos = new System.Windows.Forms.ImageList(this.components);
             this.mainSlipContainer = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbFuentes = new System.Windows.Forms.ComboBox();
             this.cmbTamano = new System.Windows.Forms.ComboBox();
+            this.cmbColor = new System.Windows.Forms.ComboBox();
             this.btnCentrar = new System.Windows.Forms.Button();
             this.imgAlineacion = new System.Windows.Forms.ImageList(this.components);
+            this.btnJustificar = new System.Windows.Forms.Button();
             this.btnIzquierda = new System.Windows.Forms.Button();
             this.btnDerecha = new System.Windows.Forms.Button();
-            this.btnJustificar = new System.Windows.Forms.Button();
-            this.cmbColor = new System.Windows.Forms.ComboBox();
-            this.cmbFuentes = new System.Windows.Forms.ComboBox();
             this.txtSueño = new System.Windows.Forms.RichTextBox();
             this.csmTextBox = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmCopiar = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,17 +97,16 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.acercadeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imgEmogis = new System.Windows.Forms.ImageList(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
             this.cmsTreeView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).BeginInit();
             this.mainSlipContainer.Panel1.SuspendLayout();
             this.mainSlipContainer.Panel2.SuspendLayout();
             this.mainSlipContainer.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.csmTextBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbWrapper)).BeginInit();
             this.pnMenu.SuspendLayout();
             this.mnPrincipal.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tvSuenos
@@ -114,6 +114,7 @@
             this.tvSuenos.BackColor = System.Drawing.Color.White;
             this.tvSuenos.ContextMenuStrip = this.cmsTreeView;
             this.tvSuenos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvSuenos.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvSuenos.ImageIndex = 0;
             this.tvSuenos.ImageList = this.imgArchivos;
             this.tvSuenos.Indent = 10;
@@ -122,7 +123,7 @@
             this.tvSuenos.Location = new System.Drawing.Point(0, 0);
             this.tvSuenos.Name = "tvSuenos";
             this.tvSuenos.SelectedImageIndex = 0;
-            this.tvSuenos.Size = new System.Drawing.Size(261, 578);
+            this.tvSuenos.Size = new System.Drawing.Size(227, 614);
             this.tvSuenos.TabIndex = 0;
             this.tvSuenos.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvSuenos_AfterLabelEdit);
             this.tvSuenos.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.tvSuenos_NodeMouseHover);
@@ -232,11 +233,11 @@
             // 
             // mainSlipContainer
             // 
-            this.mainSlipContainer.BackColor = System.Drawing.Color.SteelBlue;
+            this.mainSlipContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(56)))), ((int)(((byte)(78)))));
             this.mainSlipContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mainSlipContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainSlipContainer.ForeColor = System.Drawing.Color.SteelBlue;
-            this.mainSlipContainer.Location = new System.Drawing.Point(0, 48);
+            this.mainSlipContainer.Location = new System.Drawing.Point(0, 51);
             this.mainSlipContainer.Name = "mainSlipContainer";
             // 
             // mainSlipContainer.Panel1
@@ -246,16 +247,41 @@
             // 
             // mainSlipContainer.Panel2
             // 
-            this.mainSlipContainer.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mainSlipContainer.Panel2.Controls.Add(this.panel1);
+            this.mainSlipContainer.Panel2.BackColor = System.Drawing.Color.LightSteelBlue;
             this.mainSlipContainer.Panel2.Controls.Add(this.txtSueño);
             this.mainSlipContainer.Panel2.Controls.Add(this.pbWrapper);
             this.mainSlipContainer.Panel2MinSize = 100;
-            this.mainSlipContainer.Size = new System.Drawing.Size(1171, 582);
-            this.mainSlipContainer.SplitterDistance = 265;
-            this.mainSlipContainer.SplitterWidth = 5;
+            this.mainSlipContainer.Size = new System.Drawing.Size(1025, 618);
+            this.mainSlipContainer.SplitterDistance = 231;
             this.mainSlipContainer.TabIndex = 1;
             this.mainSlipContainer.MouseHover += new System.EventHandler(this.mainSlipContainer_MouseHover);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(56)))), ((int)(((byte)(78)))));
+            this.panel1.Controls.Add(this.cmbFuentes);
+            this.panel1.Controls.Add(this.cmbTamano);
+            this.panel1.Controls.Add(this.cmbColor);
+            this.panel1.Controls.Add(this.btnCentrar);
+            this.panel1.Controls.Add(this.btnJustificar);
+            this.panel1.Controls.Add(this.btnIzquierda);
+            this.panel1.Controls.Add(this.btnDerecha);
+            this.panel1.Location = new System.Drawing.Point(369, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(486, 30);
+            this.panel1.TabIndex = 15;
+            // 
+            // cmbFuentes
+            // 
+            this.cmbFuentes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbFuentes.Enabled = false;
+            this.cmbFuentes.FormattingEnabled = true;
+            this.cmbFuentes.ItemHeight = 19;
+            this.cmbFuentes.Location = new System.Drawing.Point(3, 0);
+            this.cmbFuentes.Name = "cmbFuentes";
+            this.cmbFuentes.Size = new System.Drawing.Size(121, 25);
+            this.cmbFuentes.TabIndex = 8;
+            this.cmbFuentes.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbFuentes_DrawItem);
             // 
             // cmbTamano
             // 
@@ -272,11 +298,23 @@
             "16",
             "18",
             "20"});
-            this.cmbTamano.Location = new System.Drawing.Point(301, 0);
+            this.cmbTamano.Location = new System.Drawing.Point(263, 0);
             this.cmbTamano.Name = "cmbTamano";
-            this.cmbTamano.Size = new System.Drawing.Size(49, 24);
+            this.cmbTamano.Size = new System.Drawing.Size(43, 25);
             this.cmbTamano.TabIndex = 14;
             this.cmbTamano.SelectedIndexChanged += new System.EventHandler(this.cmbTamano_SelectedIndexChanged);
+            // 
+            // cmbColor
+            // 
+            this.cmbColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbColor.Enabled = false;
+            this.cmbColor.FormattingEnabled = true;
+            this.cmbColor.ItemHeight = 19;
+            this.cmbColor.Location = new System.Drawing.Point(129, 0);
+            this.cmbColor.Name = "cmbColor";
+            this.cmbColor.Size = new System.Drawing.Size(119, 25);
+            this.cmbColor.TabIndex = 9;
+            this.cmbColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbColor_DrawItem);
             // 
             // btnCentrar
             // 
@@ -285,10 +323,10 @@
             this.btnCentrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCentrar.ImageIndex = 3;
             this.btnCentrar.ImageList = this.imgAlineacion;
-            this.btnCentrar.Location = new System.Drawing.Point(455, 0);
+            this.btnCentrar.Location = new System.Drawing.Point(398, 0);
             this.btnCentrar.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.btnCentrar.Name = "btnCentrar";
-            this.btnCentrar.Size = new System.Drawing.Size(35, 28);
+            this.btnCentrar.Size = new System.Drawing.Size(31, 30);
             this.btnCentrar.TabIndex = 13;
             this.btnCentrar.UseVisualStyleBackColor = false;
             this.btnCentrar.Click += new System.EventHandler(this.cmbCentrar_Click);
@@ -302,6 +340,21 @@
             this.imgAlineacion.Images.SetKeyName(2, "alinear-justificar.png");
             this.imgAlineacion.Images.SetKeyName(3, "centro-de-alineacion-de-texto.png");
             // 
+            // btnJustificar
+            // 
+            this.btnJustificar.BackColor = System.Drawing.SystemColors.Window;
+            this.btnJustificar.Enabled = false;
+            this.btnJustificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJustificar.ImageIndex = 2;
+            this.btnJustificar.ImageList = this.imgAlineacion;
+            this.btnJustificar.Location = new System.Drawing.Point(323, 0);
+            this.btnJustificar.Name = "btnJustificar";
+            this.btnJustificar.Size = new System.Drawing.Size(31, 30);
+            this.btnJustificar.TabIndex = 10;
+            this.btnJustificar.UseVisualStyleBackColor = false;
+            this.btnJustificar.Visible = false;
+            this.btnJustificar.Click += new System.EventHandler(this.btnJustificar_Click);
+            // 
             // btnIzquierda
             // 
             this.btnIzquierda.BackColor = System.Drawing.SystemColors.Window;
@@ -309,10 +362,10 @@
             this.btnIzquierda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIzquierda.ImageIndex = 1;
             this.btnIzquierda.ImageList = this.imgAlineacion;
-            this.btnIzquierda.Location = new System.Drawing.Point(500, 0);
+            this.btnIzquierda.Location = new System.Drawing.Point(362, 1);
             this.btnIzquierda.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.btnIzquierda.Name = "btnIzquierda";
-            this.btnIzquierda.Size = new System.Drawing.Size(35, 28);
+            this.btnIzquierda.Size = new System.Drawing.Size(31, 30);
             this.btnIzquierda.TabIndex = 12;
             this.btnIzquierda.UseVisualStyleBackColor = false;
             this.btnIzquierda.Click += new System.EventHandler(this.btnIzquierda_Click);
@@ -324,62 +377,26 @@
             this.btnDerecha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDerecha.ImageIndex = 0;
             this.btnDerecha.ImageList = this.imgAlineacion;
-            this.btnDerecha.Location = new System.Drawing.Point(410, 0);
+            this.btnDerecha.Location = new System.Drawing.Point(434, 0);
             this.btnDerecha.Name = "btnDerecha";
-            this.btnDerecha.Size = new System.Drawing.Size(35, 28);
+            this.btnDerecha.Size = new System.Drawing.Size(31, 30);
             this.btnDerecha.TabIndex = 11;
             this.btnDerecha.UseVisualStyleBackColor = false;
             this.btnDerecha.Click += new System.EventHandler(this.btnDerecha_Click);
             // 
-            // btnJustificar
-            // 
-            this.btnJustificar.BackColor = System.Drawing.SystemColors.Window;
-            this.btnJustificar.Enabled = false;
-            this.btnJustificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJustificar.ImageIndex = 2;
-            this.btnJustificar.ImageList = this.imgAlineacion;
-            this.btnJustificar.Location = new System.Drawing.Point(369, 0);
-            this.btnJustificar.Name = "btnJustificar";
-            this.btnJustificar.Size = new System.Drawing.Size(35, 28);
-            this.btnJustificar.TabIndex = 10;
-            this.btnJustificar.UseVisualStyleBackColor = false;
-            this.btnJustificar.Click += new System.EventHandler(this.btnJustificar_Click);
-            // 
-            // cmbColor
-            // 
-            this.cmbColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbColor.Enabled = false;
-            this.cmbColor.FormattingEnabled = true;
-            this.cmbColor.ItemHeight = 19;
-            this.cmbColor.Location = new System.Drawing.Point(147, 0);
-            this.cmbColor.Name = "cmbColor";
-            this.cmbColor.Size = new System.Drawing.Size(135, 25);
-            this.cmbColor.TabIndex = 9;
-            this.cmbColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbColor_DrawItem);
-            // 
-            // cmbFuentes
-            // 
-            this.cmbFuentes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbFuentes.Enabled = false;
-            this.cmbFuentes.FormattingEnabled = true;
-            this.cmbFuentes.ItemHeight = 19;
-            this.cmbFuentes.Location = new System.Drawing.Point(3, 0);
-            this.cmbFuentes.Name = "cmbFuentes";
-            this.cmbFuentes.Size = new System.Drawing.Size(138, 25);
-            this.cmbFuentes.TabIndex = 8;
-            this.cmbFuentes.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbFuentes_DrawItem);
-            // 
             // txtSueño
             // 
-            this.txtSueño.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.txtSueño.BackColor = System.Drawing.Color.White;
             this.txtSueño.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSueño.ContextMenuStrip = this.csmTextBox;
-            this.txtSueño.Location = new System.Drawing.Point(0, 24);
+            this.txtSueño.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSueño.Location = new System.Drawing.Point(0, 0);
             this.txtSueño.Name = "txtSueño";
             this.txtSueño.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.txtSueño.Size = new System.Drawing.Size(897, 556);
+            this.txtSueño.Size = new System.Drawing.Size(786, 614);
             this.txtSueño.TabIndex = 6;
             this.txtSueño.Text = "";
+            this.txtSueño.TextChanged += new System.EventHandler(this.txtSueño_TextChanged);
             // 
             // csmTextBox
             // 
@@ -459,9 +476,9 @@
             // 
             this.pbWrapper.BackColor = System.Drawing.SystemColors.Window;
             this.pbWrapper.Image = ((System.Drawing.Image)(resources.GetObject("pbWrapper.Image")));
-            this.pbWrapper.Location = new System.Drawing.Point(3, 268);
+            this.pbWrapper.Location = new System.Drawing.Point(3, 285);
             this.pbWrapper.Name = "pbWrapper";
-            this.pbWrapper.Size = new System.Drawing.Size(34, 31);
+            this.pbWrapper.Size = new System.Drawing.Size(30, 33);
             this.pbWrapper.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbWrapper.TabIndex = 5;
             this.pbWrapper.TabStop = false;
@@ -480,30 +497,33 @@
             // pnMenu
             // 
             this.pnMenu.Controls.Add(this.btnSinAcabar);
+            this.pnMenu.Controls.Add(this.panel1);
             this.pnMenu.Controls.Add(this.mnPrincipal);
             this.pnMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnMenu.Location = new System.Drawing.Point(0, 0);
             this.pnMenu.Name = "pnMenu";
-            this.pnMenu.Size = new System.Drawing.Size(1171, 48);
+            this.pnMenu.Size = new System.Drawing.Size(1025, 51);
             this.pnMenu.TabIndex = 2;
             // 
             // btnSinAcabar
             // 
+            this.btnSinAcabar.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSinAcabar.FlatAppearance.BorderSize = 0;
             this.btnSinAcabar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSinAcabar.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSinAcabar.Location = new System.Drawing.Point(1031, 3);
+            this.btnSinAcabar.Location = new System.Drawing.Point(902, 7);
             this.btnSinAcabar.Name = "btnSinAcabar";
-            this.btnSinAcabar.Size = new System.Drawing.Size(128, 39);
+            this.btnSinAcabar.Size = new System.Drawing.Size(112, 41);
             this.btnSinAcabar.TabIndex = 7;
             this.btnSinAcabar.Tag = "";
             this.btnSinAcabar.Text = "No terminado";
-            this.btnSinAcabar.UseVisualStyleBackColor = true;
+            this.btnSinAcabar.UseVisualStyleBackColor = false;
             this.btnSinAcabar.Visible = false;
             this.btnSinAcabar.Click += new System.EventHandler(this.btnSinAcabar_Click);
             // 
             // mnPrincipal
             // 
-            this.mnPrincipal.BackColor = System.Drawing.Color.SteelBlue;
+            this.mnPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(56)))), ((int)(((byte)(78)))));
             this.mnPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mnPrincipal.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnPrincipal.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -515,7 +535,8 @@
             this.mnPrincipal.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.mnPrincipal.Location = new System.Drawing.Point(0, 0);
             this.mnPrincipal.Name = "mnPrincipal";
-            this.mnPrincipal.Size = new System.Drawing.Size(1171, 48);
+            this.mnPrincipal.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.mnPrincipal.Size = new System.Drawing.Size(1025, 51);
             this.mnPrincipal.TabIndex = 6;
             this.mnPrincipal.Text = "menuStrip1";
             // 
@@ -529,6 +550,7 @@
             this.toolStripSeparator2,
             this.cerrarSesionToolStripMenuItem,
             this.salirToolStripMenuItem});
+            this.archivoToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(81, 44);
             this.archivoToolStripMenuItem.Text = "&Archivo";
@@ -594,6 +616,7 @@
             this.pegarToolStripMenuItem,
             this.toolStripSeparator4,
             this.seleccionartodoToolStripMenuItem});
+            this.editarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
             this.editarToolStripMenuItem.Size = new System.Drawing.Size(68, 44);
             this.editarToolStripMenuItem.Text = "&Editar";
@@ -665,6 +688,7 @@
             this.personalizarToolStripMenuItem,
             this.opcionesToolStripMenuItem,
             this.ocultarToolStripMenuItem});
+            this.herramientasToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(126, 44);
             this.herramientasToolStripMenuItem.Text = "&Herramientas";
@@ -705,6 +729,7 @@
             this.buscarToolStripMenuItem,
             this.toolStripSeparator5,
             this.acercadeToolStripMenuItem});
+            this.ayudaToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(69, 44);
             this.ayudaToolStripMenuItem.Text = "Ay&uda";
@@ -749,31 +774,16 @@
             this.imgEmogis.Images.SetKeyName(4, "sonrisa.png");
             this.imgEmogis.Images.SetKeyName(5, "triste.png");
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.SteelBlue;
-            this.panel1.Controls.Add(this.cmbFuentes);
-            this.panel1.Controls.Add(this.cmbTamano);
-            this.panel1.Controls.Add(this.cmbColor);
-            this.panel1.Controls.Add(this.btnCentrar);
-            this.panel1.Controls.Add(this.btnJustificar);
-            this.panel1.Controls.Add(this.btnIzquierda);
-            this.panel1.Controls.Add(this.btnDerecha);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(897, 28);
-            this.panel1.TabIndex = 15;
-            // 
             // pnPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(1171, 630);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(1025, 669);
             this.Controls.Add(this.mainSlipContainer);
             this.Controls.Add(this.pnMenu);
+            this.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "pnPrincipal";
@@ -787,13 +797,13 @@
             this.mainSlipContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainSlipContainer)).EndInit();
             this.mainSlipContainer.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.csmTextBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbWrapper)).EndInit();
             this.pnMenu.ResumeLayout(false);
             this.pnMenu.PerformLayout();
             this.mnPrincipal.ResumeLayout(false);
             this.mnPrincipal.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -78,7 +78,7 @@ namespace Recuerdos
                 consulta = objCon.consulta("select * from sueno where nombre='" + txtNuevoNombre.Text + "' and id_usuario=" + usuario + " and id_recuerdo=" + padre + "", con);
                 if (consulta.Read())
                 {
-                    MessageBox.Show("Lo sentimos ya existe un sueño con este nombre. （⊙ｏ⊙）");
+                    MessageBox.Show("Lo sentimos, ya existe un sueño con este nombre. （⊙ｏ⊙）");
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace Recuerdos
             }
             else
             {
-                MessageBox.Show("Por favor ingresa un nombre, no se admite vacio como nombre  ⊙﹏⊙∥");
+                MessageBox.Show("No has ingresado un nombre.  ⊙﹏⊙∥");
             }
         }
 
@@ -122,7 +122,7 @@ namespace Recuerdos
                 consulta = objCon.consulta("select * from recuerdo where id_padre=" + padre + " and nombre='" + txtNuevoNombre.Text + "' and id_usuario=" + usuario + "", con);
                 if (consulta.Read())
                 {
-                    MessageBox.Show("Lo sentimos ya existe una recuerdo con este nombre. （⊙ｏ⊙）");
+                    MessageBox.Show("Lo sentimos, ya existe una recuerdo con este nombre. （⊙ｏ⊙）");
                 }
                 else
                 {
@@ -145,7 +145,7 @@ namespace Recuerdos
             }
             else
             {
-                MessageBox.Show("Porfavor ingresa un nombre, no se admite vacio como nombre  ⊙﹏⊙∥");
+                MessageBox.Show("No has ingresado un nombre.  ⊙﹏⊙∥");
             }
         }
     }

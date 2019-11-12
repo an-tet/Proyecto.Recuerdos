@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNombres = new System.Windows.Forms.Label();
             this.lblApellidos = new System.Windows.Forms.Label();
@@ -46,66 +45,66 @@
             this.txtConfirmarContracena = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(287, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "REGISTRO";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(121, 56);
+            this.label2.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(5, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(426, 38);
+            this.label2.Size = new System.Drawing.Size(628, 56);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Hola, necesitamos llenes lo siguientes datos, prometemos\r\n                 sera r" +
-    "apido y facil (～￣▽￣)～";
+            this.label2.Text = "Para registrarte, rellena el siguiente formulari. Prometemos que solo te \r\ntomará" +
+    " un minuto......... o dos (づ￣ 3￣)づ\r\n";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblNombres
             // 
             this.lblNombres.AutoSize = true;
-            this.lblNombres.Location = new System.Drawing.Point(42, 133);
+            this.lblNombres.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombres.ForeColor = System.Drawing.Color.White;
+            this.lblNombres.Location = new System.Drawing.Point(46, 114);
             this.lblNombres.Name = "lblNombres";
-            this.lblNombres.Size = new System.Drawing.Size(70, 17);
+            this.lblNombres.Size = new System.Drawing.Size(87, 23);
             this.lblNombres.TabIndex = 2;
             this.lblNombres.Text = "Nombres*";
             // 
             // lblApellidos
             // 
             this.lblApellidos.AutoSize = true;
-            this.lblApellidos.Location = new System.Drawing.Point(341, 130);
+            this.lblApellidos.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellidos.ForeColor = System.Drawing.Color.White;
+            this.lblApellidos.Location = new System.Drawing.Point(345, 111);
             this.lblApellidos.Name = "lblApellidos";
-            this.lblApellidos.Size = new System.Drawing.Size(70, 17);
+            this.lblApellidos.Size = new System.Drawing.Size(86, 23);
             this.lblApellidos.TabIndex = 3;
             this.lblApellidos.Text = "Apellidos*";
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(42, 173);
+            this.lblUsuario.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.ForeColor = System.Drawing.Color.White;
+            this.lblUsuario.Location = new System.Drawing.Point(46, 154);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(62, 17);
+            this.lblUsuario.Size = new System.Drawing.Size(75, 23);
             this.lblUsuario.TabIndex = 4;
             this.lblUsuario.Text = "Usuario*";
             // 
             // lblContracena
             // 
             this.lblContracena.AutoSize = true;
-            this.lblContracena.Location = new System.Drawing.Point(341, 173);
+            this.lblContracena.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContracena.ForeColor = System.Drawing.Color.White;
+            this.lblContracena.Location = new System.Drawing.Point(345, 154);
             this.lblContracena.Name = "lblContracena";
-            this.lblContracena.Size = new System.Drawing.Size(86, 17);
+            this.lblContracena.Size = new System.Drawing.Size(104, 23);
             this.lblContracena.TabIndex = 5;
-            this.lblContracena.Text = "Contraceña*";
+            this.lblContracena.Text = "Contraseña*";
             // 
             // txtNombres
             // 
-            this.txtNombres.Location = new System.Drawing.Point(139, 127);
+            this.txtNombres.Location = new System.Drawing.Point(143, 108);
             this.txtNombres.MaxLength = 20;
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(173, 22);
@@ -114,7 +113,7 @@
             // 
             // txtApellidos
             // 
-            this.txtApellidos.Location = new System.Drawing.Point(438, 130);
+            this.txtApellidos.Location = new System.Drawing.Point(455, 108);
             this.txtApellidos.MaxLength = 15;
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(173, 22);
@@ -123,7 +122,7 @@
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(139, 173);
+            this.txtUsuario.Location = new System.Drawing.Point(143, 154);
             this.txtUsuario.MaxLength = 15;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(173, 22);
@@ -132,7 +131,7 @@
             // 
             // txtContracena
             // 
-            this.txtContracena.Location = new System.Drawing.Point(438, 173);
+            this.txtContracena.Location = new System.Drawing.Point(455, 154);
             this.txtContracena.MaxLength = 20;
             this.txtContracena.Name = "txtContracena";
             this.txtContracena.PasswordChar = '*';
@@ -142,38 +141,47 @@
             // 
             // btnRegistrar
             // 
+            this.btnRegistrar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnRegistrar.FlatAppearance.BorderSize = 0;
             this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrar.ForeColor = System.Drawing.Color.Black;
             this.btnRegistrar.Location = new System.Drawing.Point(196, 298);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(84, 34);
             this.btnRegistrar.TabIndex = 10;
             this.btnRegistrar.Text = "Registrar";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.UseVisualStyleBackColor = false;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnCancelar
             // 
+            this.btnCancelar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ForeColor = System.Drawing.Color.Black;
             this.btnCancelar.Location = new System.Drawing.Point(356, 298);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(84, 34);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // lblCorreo
             // 
             this.lblCorreo.AutoSize = true;
-            this.lblCorreo.Location = new System.Drawing.Point(42, 252);
+            this.lblCorreo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblCorreo.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCorreo.ForeColor = System.Drawing.Color.White;
+            this.lblCorreo.Location = new System.Drawing.Point(46, 233);
             this.lblCorreo.Name = "lblCorreo";
-            this.lblCorreo.Size = new System.Drawing.Size(129, 17);
+            this.lblCorreo.Size = new System.Drawing.Size(158, 23);
             this.lblCorreo.TabIndex = 12;
-            this.lblCorreo.Text = "Correo electronico*";
+            this.lblCorreo.Text = "Correo electrónico*";
             // 
             // txtCorreo
             // 
-            this.txtCorreo.Location = new System.Drawing.Point(196, 252);
+            this.txtCorreo.Location = new System.Drawing.Point(231, 233);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(415, 22);
             this.txtCorreo.TabIndex = 13;
@@ -182,15 +190,17 @@
             // lblConfirmarContracena
             // 
             this.lblConfirmarContracena.AutoSize = true;
-            this.lblConfirmarContracena.Location = new System.Drawing.Point(42, 217);
+            this.lblConfirmarContracena.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConfirmarContracena.ForeColor = System.Drawing.Color.White;
+            this.lblConfirmarContracena.Location = new System.Drawing.Point(46, 198);
             this.lblConfirmarContracena.Name = "lblConfirmarContracena";
-            this.lblConfirmarContracena.Size = new System.Drawing.Size(148, 17);
+            this.lblConfirmarContracena.Size = new System.Drawing.Size(182, 23);
             this.lblConfirmarContracena.TabIndex = 14;
-            this.lblConfirmarContracena.Text = "Confirmar contraceña:";
+            this.lblConfirmarContracena.Text = "Confirmar contraseña*";
             // 
             // txtConfirmarContracena
             // 
-            this.txtConfirmarContracena.Location = new System.Drawing.Point(200, 214);
+            this.txtConfirmarContracena.Location = new System.Drawing.Point(231, 198);
             this.txtConfirmarContracena.Name = "txtConfirmarContracena";
             this.txtConfirmarContracena.Size = new System.Drawing.Size(173, 22);
             this.txtConfirmarContracena.TabIndex = 15;
@@ -200,8 +210,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(660, 344);
+            this.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.ClientSize = new System.Drawing.Size(709, 344);
             this.ControlBox = false;
             this.Controls.Add(this.txtConfirmarContracena);
             this.Controls.Add(this.lblConfirmarContracena);
@@ -218,9 +228,9 @@
             this.Controls.Add(this.lblApellidos);
             this.Controls.Add(this.lblNombres);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "Registro";
-            this.Opacity = 0.9D;
+            this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro";
             this.ResumeLayout(false);
@@ -229,8 +239,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNombres;
         private System.Windows.Forms.Label lblApellidos;
